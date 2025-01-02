@@ -20,6 +20,7 @@
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white;
+            position: relative;
         }
 
         header {
@@ -154,6 +155,62 @@
         footer .social-icons a:hover {
             color: #04AA6D;
         }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+
+        .message-box {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .message-box button {
+            width: 100%;
+            padding: 10px;
+            background: #04AA6D;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .message-box button:hover {
+            background: #028858;
+        }
     </style>
 </head>
 <body>
@@ -186,16 +243,41 @@
         <div class="response" id="response"></div>
     </div>
 
+    <!-- Floating WhatsApp Icon -->
+    <div class="whatsapp-button" onclick="openMessageBox()">💬</div>
+
+    <!-- Message Box -->
+    <div class="message-box" id="messageBox">
+        <input type="text" id="whatsappMessage" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
     <footer>
         <div class="social-icons">
-            <a href="https://facebook.com" aria-label="Facebook Profile" target="_blank">FB</a>
-            <a href="https://twitter.com" aria-label="Twitter Profile" target="_blank">TW</a>
-            <a href="https://linkedin.com" aria-label="LinkedIn Profile" target="_blank">LI</a>
+            <a href="https://facebook.com" aria-label="Facebook Profile" target="_blank">Facebook</a>
+            <a href="https://twitter.com" aria-label="Twitter Profile" target="_blank">Twitter</a>
+            <a href="https://linkedin.com" aria-label="LinkedIn Profile" target="_blank">LinkedIn</a>
         </div>
         &copy; 2025 Math Notes Pro | All Rights Reserved
     </footer>
 
     <script>
+        // Open the message box
+        function openMessageBox() {
+            document.getElementById('messageBox').style.display = 'block';
+        }
+
+        // Send message and open WhatsApp
+        function sendMessage() {
+            const message = document.getElementById('whatsappMessage').value;
+            const whatsappLink = `https://wa.me/8801767503056?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappLink, '_blank');  // Open WhatsApp in a new tab
+
+            // Hide the message box
+            document.getElementById('messageBox').style.display = 'none';
+        }
+
         async function getAnswer() {
             const question = document.getElementById('question').value.trim();
             const responseDiv = document.getElementById('response');
@@ -205,35 +287,34 @@
                 return;
             }
 
-            const apiKey = "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"; // Your Hugging Face API key
-            const apiUrl = "https://api-inference.huggingface.co/models/EleutherAI/gpt-neo-2.7B"; // The model you are using
-
+            const apiUrl = "https://api-inference.huggingface.co/models/EleutherAI/gpt-neo-2.7B";
             const headers = {
-                "Authorization": `Bearer ${apiKey}`,
+                "Authorization": "Bearer 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",
                 "Content-Type": "application/json"
             };
 
-            const payload = {
-                "inputs": question
-            };
+            const data = JSON.stringify({
+                inputs: question
+            });
 
             try {
                 const response = await fetch(apiUrl, {
-                    method: "POST",
+                    method: 'POST',
                     headers: headers,
-                    body: JSON.stringify(payload)
+                    body: data
                 });
-
-                const data = await response.json();
-                if (data && data[0]) {
-                    responseDiv.textContent = data[0].generated_text || "Sorry, I couldn't generate an answer.";
+                const result = await response.json();
+                
+                if (result && result[0] && result[0].generated_text) {
+                    responseDiv.textContent = result[0].generated_text;
                 } else {
-                    responseDiv.textContent = "Sorry, I couldn't understand your question.";
+                    responseDiv.textContent = "Sorry, I couldn't find an answer.";
                 }
             } catch (error) {
-                responseDiv.textContent = "Error occurred. Please try again.";
+                console.error("Error fetching the answer:", error);
+                responseDiv.textContent = "An error occurred while fetching the answer.";
             }
         }
     </script>
 </body>
-</html>
+            </html>
