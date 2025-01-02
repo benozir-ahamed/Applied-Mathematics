@@ -271,7 +271,7 @@
             }
 
             const apiKey = "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"; // Your Hugging Face API key
-            const apiUrl = "https://api-inference.huggingface.co/models/gpt2"; // You can change this to a better model like gpt-neo or distilgpt2
+            const apiUrl = "https://api-inference.huggingface.co/models/gpt2"; // The model you are using
 
             const headers = {
                 "Authorization": `Bearer ${apiKey}`,
@@ -289,18 +289,14 @@
                     body: JSON.stringify(payload)
                 });
 
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data from Hugging Face API");
-                }
-
                 const data = await response.json();
-                if (data && data.length > 0) {
+                if (data && data[0]) {
                     responseDiv.textContent = data[0].generated_text || "Sorry, I couldn't generate an answer.";
                 } else {
                     responseDiv.textContent = "Sorry, I couldn't understand your question.";
                 }
             } catch (error) {
-                responseDiv.textContent = "Error occurred: " + error.message;
+                responseDiv.textContent = "Error occurred. Please try again.";
             }
         }
     </script>
