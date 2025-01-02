@@ -1,162 +1,205 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Design</title>
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #1e3c72, #2a5298);
-            color: white;
-            overflow-x: hidden;
-        }
-
-        ul {
-            list-style-type: none;
+        /* General Styling */
+        * {
             margin: 0;
             padding: 0;
-            width: 20%;
-            background-color: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            height: 100%;
-            overflow: auto;
+            box-sizing: border-box;
         }
 
-        ul li a {
-            display: block;
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom right, #1e3c72, #2a5298);
             color: white;
-            padding: 10px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 2s;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        header h3 {
+            font-size: 1.5rem;
+            color: #ccc;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+        }
+
+        nav a {
             text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            background: #555;
+            border-radius: 5px;
+            transition: background 0.3s;
         }
 
-        ul li a.active {
-            background-color: #04AA6D;
-        }
-
-        ul li a:hover {
-            background-color: #555;
+        nav a:hover {
+            background: #04AA6D;
         }
 
         .content {
-            margin-left: 20%;
             padding: 20px;
-        }
-
-        .header {
             text-align: center;
-            padding: 50px 0;
         }
 
-        .header h1 {
-            font-size: 50px;
-            animation: fadeIn 3s ease-in-out;
+        .content h3 {
+            font-size: 2rem;
+            margin: 20px 0;
         }
 
-        .digital-clock {
+        .content p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 20px auto;
+            width: 80%;
+        }
+
+        /* Digital Clock */
+        .clock-container {
             text-align: center;
-            font-size: 25px;
+            margin: 20px 0;
+        }
+
+        .clock {
+            font-size: 2rem;
             padding: 10px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 5px;
             display: inline-block;
-            margin: 20px auto;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .science-animation {
-            margin: 50px auto;
+        /* Science Animation */
+        .animation-container {
             display: flex;
             justify-content: center;
+            margin: 40px 0;
         }
 
-        .science-animation div {
+        .animation {
             width: 50px;
             height: 50px;
+            background: rgba(255, 255, 255, 0.8);
             margin: 0 10px;
-            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
-            animation: bounce 2s infinite;
+            animation: bounce 2s infinite ease-in-out;
         }
 
-        .science-animation div:nth-child(2) {
-            animation-delay: 0.2s;
+        .animation:nth-child(2) {
+            animation-delay: 0.3s;
         }
 
-        .science-animation div:nth-child(3) {
-            animation-delay: 0.4s;
+        .animation:nth-child(3) {
+            animation-delay: 0.6s;
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-30px); }
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
         }
 
-        .ru-animation {
+        /* Rajshahi University Logo Animation */
+        .ru-container {
             text-align: center;
-            margin-top: 50px;
+            margin: 50px 0;
         }
 
-        .ru-animation img {
-            width: 100px;
-            animation: spin 5s infinite linear;
+        .ru-logo img {
+            width: 120px;
+            animation: spin 3s linear infinite;
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #ccc;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <ul>
-        <li><a class="active" href="index.html">Home</a></li>
-        <li><a href="notes.html">BSC APM NOTES</a></li>
-        <li><a href="solve.html">BSC APM QUESTION SOLVE</a></li>
-        <li><a href="chapter.html">CLASS SIX MATHEMATICS</a></li>
-        <li><a href="https://wa.me/8801767503056">Contact</a></li>
-        <li><a href="#about">About</a></li>
-    </ul>
+    <header>
+        <h1>Benozir Ahamed Hridoy</h1>
+        <h3>University of Rajshahi | B.Sc. in Applied Mathematics</h3>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="notes.html">BSC APM Notes</a>
+        <a href="solve.html">Question Solve</a>
+        <a href="chapter.html">Class Six Mathematics</a>
+        <a href="https://wa.me/8801767503056">Contact</a>
+        <a href="#about">About</a>
+    </nav>
 
     <div class="content">
-        <div class="header">
-            <h1>Benozir Ahamed Hridoy</h1>
-            <h3>University of Rajshahi <br> B.Sc. in Applied Mathematics</h3>
+        <div class="clock-container">
+            <div id="clock" class="clock"></div>
         </div>
 
-        <div id="clock" class="digital-clock"></div>
-
-        <div class="science-animation">
-            <div></div>
-            <div></div>
-            <div></div>
+        <div class="animation-container">
+            <div class="animation"></div>
+            <div class="animation"></div>
+            <div class="animation"></div>
         </div>
 
-        <h3>What is Applied Mathematics</h3>
-        <p><i>Applied Mathematics</i> is a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems in various fields such as science, engineering, economics, medicine, and more. Unlike pure mathematics, which is concerned with abstract concepts and theories, applied mathematics aims to translate theoretical mathematical knowledge into practical applications.</p>
-        <p>
-            Key features of applied mathematics include:
-            <ul>
-                <li><b>Modeling:</b> Applied mathematics often involves creating mathematical models to represent real-world systems, phenomena, or processes. These models are used to analyze, predict, or optimize outcomes.</li>
-                <li><b>Computational Methods:</b> Applied mathematicians often use numerical methods, algorithms, and computational tools to solve complex problems that cannot be addressed analytically.</li>
-            </ul>
-        </p>
+        <h3>What is Applied Mathematics?</h3>
+        <p>Applied Mathematics is a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems...</p>
 
-        <h3>Branches of Applied Mathematics:</h3>
-        <ul>
-            <li><b>Optimization:</b> Finding the best solution from a set of possible choices.</li>
-            <li><b>Statistics and Probability:</b> Analyzing and predicting outcomes based on data and randomness.</li>
-            <li><b>Differential Equations:</b> Modeling dynamic systems that change over time.</li>
-            <li><b>Numerical Analysis:</b> Designing algorithms for approximating solutions to mathematical problems.</li>
-        </ul>
-
-        <div class="ru-animation">
-            <img src="https://upload.wikimedia.org/wikipedia/en/6/60/RU_Logo.png" alt="Rajshahi University Logo">
-            <p>Welcome to the University of Rajshahi</p>
+        <div class="ru-container">
+            <div class="ru-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/en/6/60/RU_Logo.png" alt="Rajshahi University Logo">
+            </div>
+            <h3>Welcome to the University of Rajshahi</h3>
         </div>
     </div>
+
+    <footer>
+        &copy; 2025 Benozir Ahamed Hridoy | All Rights Reserved
+    </footer>
 
     <script>
         function updateClock() {
@@ -170,4 +213,4 @@
         updateClock();
     </script>
 </body>
-    </html>
+</html>
