@@ -3,126 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Math Notes Pro - Sleek Design</title>
+  <title>Math Notes Pro - Attractive Design</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f4f4f9;
+      background-color: #f9f9f9;
       color: #333;
     }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px;
-      background-color: #004d99;
+    .navbar {
+      background-color: #2c3e50;
+      padding: 10px 20px;
+    }
+    .navbar-brand {
       color: white;
-      padding: 20px;
-      overflow-y: auto;
+      font-weight: bold;
+      font-size: 24px;
     }
-    .sidebar h2 {
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-    .sidebar a {
+    .navbar a {
       color: white;
       text-decoration: none;
-      font-size: 16px;
-      margin-bottom: 10px;
-      display: block;
     }
-    .sidebar a:hover {
+    .navbar a:hover {
       text-decoration: underline;
     }
-    .main-content {
-      margin-left: 270px;
+    .hero-section {
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .hero-section h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .hero-section p {
+      font-size: 18px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
       padding: 20px;
     }
     .chapter-card {
-      background: white;
-      border: 1px solid #ddd;
+      background-color: white;
       border-radius: 8px;
-      padding: 15px;
-      margin-bottom: 20px;
-      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     .chapter-card:hover {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       transform: translateY(-5px);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
     .chapter-title {
-      font-weight: 600;
-      color: #004d99;
+      font-weight: bold;
+      color: #16a085;
+      margin-bottom: 10px;
     }
     .topic-list {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
     }
     .topic-list li {
-      margin: 10px 0;
+      margin-bottom: 10px;
     }
     .topic-list a {
-      color: #555;
+      color: #333;
       text-decoration: none;
+      transition: color 0.3s;
     }
     .topic-list a:hover {
-      color: #004d99;
+      color: #16a085;
     }
     footer {
-      background-color: #004d99;
+      background-color: #2c3e50;
       color: white;
       text-align: center;
-      padding: 10px;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer p {
+      margin: 0;
     }
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <h2>Math Notes Pro</h2>
-    <nav>
-      <a href="#fundamentals">Fundamentals of Mathematics</a>
-      <a href="#algebra">Higher Algebra & Trigonometry</a>
-      <a href="#matrix">Matrix Theory</a>
-      <a href="#calculus">Differential Calculus</a>
-      <a href="#mechanics">Mechanics, Wave & Sound</a>
-      <a href="#matlab">MATLAB</a>
-    </nav>
-  </aside>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="#">Math Notes Pro</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1>Welcome to Math Notes Pro</h1>
+    <p>Your ultimate guide to mastering Applied Mathematics!</p>
+  </div>
 
   <!-- Main Content -->
-  <div class="main-content">
-    <h1 class="mb-4">Welcome to Math Notes Pro</h1>
-    <div id="fundamentals" class="chapter-card">
-      <h2 class="chapter-title">Fundamentals of Mathematics</h2>
-      <ul class="topic-list">
-        <li><a href="#topic1">Topic 1.1: Introduction</a></li>
-        <li><a href="#topic2">Topic 1.2: Advanced Concepts</a></li>
-      </ul>
+  <div class="container">
+    <div class="grid-container">
+      <div class="chapter-card">
+        <h2 class="chapter-title">Fundamentals of Mathematics</h2>
+        <ul class="topic-list">
+          <li><a href="#topic1">Topic 1.1: Introduction</a></li>
+          <li><a href="#topic2">Topic 1.2: Advanced Concepts</a></li>
+        </ul>
+      </div>
+      <div class="chapter-card">
+        <h2 class="chapter-title">Higher Algebra & Trigonometry</h2>
+        <ul class="topic-list">
+          <li><a href="#topic3">Topic 2.1: Algebra Basics</a></li>
+          <li><a href="#topic4">Topic 2.2: Trigonometric Identities</a></li>
+        </ul>
+      </div>
+      <div class="chapter-card">
+        <h2 class="chapter-title">Matrix Theory</h2>
+        <ul class="topic-list">
+          <li><a href="#topic5">Topic 3.1: Matrix Basics</a></li>
+          <li><a href="#topic6">Topic 3.2: Applications</a></li>
+        </ul>
+      </div>
+      <div class="chapter-card">
+        <h2 class="chapter-title">Differential Calculus</h2>
+        <ul class="topic-list">
+          <li><a href="#topic7">Topic 4.1: Limits and Continuity</a></li>
+          <li><a href="#topic8">Topic 4.2: Derivatives</a></li>
+        </ul>
+      </div>
     </div>
-    <div id="algebra" class="chapter-card">
-      <h2 class="chapter-title">Higher Algebra & Trigonometry</h2>
-      <ul class="topic-list">
-        <li><a href="#topic3">Topic 2.1: Algebra Basics</a></li>
-        <li><a href="#topic4">Topic 2.2: Trigonometric Identities</a></li>
-      </ul>
-    </div>
-    <div id="matrix" class="chapter-card">
-      <h2 class="chapter-title">Matrix Theory</h2>
-      <ul class="topic-list">
-        <li><a href="#topic5">Topic 3.1: Matrix Basics</a></li>
-        <li><a href="#topic6">Topic 3.2: Applications</a></li>
-      </ul>
-    </div>
-    <!-- Additional chapters here -->
   </div>
 
   <!-- Footer -->
@@ -130,16 +143,6 @@
     <p>&copy; 2025 Math Notes Pro. All Rights Reserved.</p>
   </footer>
 
-  <script>
-    // Smooth scrolling for sidebar links
-    document.querySelectorAll('.sidebar a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        document.querySelector(link.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-        </html>
+  </html>
