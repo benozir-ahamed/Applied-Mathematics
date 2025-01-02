@@ -122,7 +122,9 @@
             transition: background 0.3s;
         }
 
-      
+        .qna-section button:hover {
+            background: #028858;
+        }
 
         .qna-section .response {
             margin-top: 20px;
@@ -149,67 +151,13 @@
             text-decoration: none;
             transition: color 0.3s;
         }
-.chat-container {
-            position: fixed;
-            bottom: 70px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            color: white;
-            width: 300px;
-            max-height: 400px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            display: none;
-            overflow-y: auto;
-        }
 
-        .chat-container input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .chat-container button {
-            width: 100%;
-            padding: 10px;
-            background: #04AA6D;
-            color: white;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .chat-container button:hover {
-            background: #028858;
-        }
-
-        .messages {
-            max-height: 250px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-        }
-
-        .messages .message {
-            margin-bottom: 10px;
-        }
-
-        .messages .message.user {
-            text-align: right;
+        footer .social-icons a:hover {
             color: #04AA6D;
         }
 
-        .messages .message.bot {
-            text-align: left;
-            color: #ccc;
-        }
-
-        /* Floating Button */
-        .chat-button {
+        /* WhatsApp Floating Button */
+        .whatsapp-button {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -223,8 +171,45 @@
             transition: transform 0.3s;
         }
 
-        .chat-button:hover {
-            transform: scale(1.1) 
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+
+        .message-box {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .message-box button {
+            width: 100%;
+            padding: 10px;
+            background: #04AA6D;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .message-box button:hover {
+            background: #028858;
         }
     </style>
 </head>
@@ -332,4 +317,4 @@
         }
     </script>
 </body>
-    </html>
+        </html>
