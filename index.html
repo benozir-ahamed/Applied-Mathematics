@@ -93,6 +93,21 @@
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-30px); }
         }
+
+        .ru-animation {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .ru-animation img {
+            width: 100px;
+            animation: spin 5s infinite linear;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -107,9 +122,11 @@
 
     <div class="content">
         <div class="header">
-            <h1>Welcome to 2025</h1>
-            <div id="clock" class="digital-clock"></div>
+            <h1>Benozir Ahamed Hridoy</h1>
+            <h3>University of Rajshahi <br> B.Sc. in Applied Mathematics</h3>
         </div>
+
+        <div id="clock" class="digital-clock"></div>
 
         <div class="science-animation">
             <div></div>
@@ -118,8 +135,27 @@
         </div>
 
         <h3>What is Applied Mathematics</h3>
-        <p>Applied Mathematics is a branch of mathematics...</p>
-        <!-- Rest of your content -->
+        <p><i>Applied Mathematics</i> is a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems in various fields such as science, engineering, economics, medicine, and more. Unlike pure mathematics, which is concerned with abstract concepts and theories, applied mathematics aims to translate theoretical mathematical knowledge into practical applications.</p>
+        <p>
+            Key features of applied mathematics include:
+            <ul>
+                <li><b>Modeling:</b> Applied mathematics often involves creating mathematical models to represent real-world systems, phenomena, or processes. These models are used to analyze, predict, or optimize outcomes.</li>
+                <li><b>Computational Methods:</b> Applied mathematicians often use numerical methods, algorithms, and computational tools to solve complex problems that cannot be addressed analytically.</li>
+            </ul>
+        </p>
+
+        <h3>Branches of Applied Mathematics:</h3>
+        <ul>
+            <li><b>Optimization:</b> Finding the best solution from a set of possible choices.</li>
+            <li><b>Statistics and Probability:</b> Analyzing and predicting outcomes based on data and randomness.</li>
+            <li><b>Differential Equations:</b> Modeling dynamic systems that change over time.</li>
+            <li><b>Numerical Analysis:</b> Designing algorithms for approximating solutions to mathematical problems.</li>
+        </ul>
+
+        <div class="ru-animation">
+            <img src="https://upload.wikimedia.org/wikipedia/en/6/60/RU_Logo.png" alt="Rajshahi University Logo">
+            <p>Welcome to the University of Rajshahi</p>
+        </div>
     </div>
 
     <script>
@@ -134,4 +170,4 @@
         updateClock();
     </script>
 </body>
-                   </html>
+    </html>
