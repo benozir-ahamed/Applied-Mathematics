@@ -1,79 +1,114 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  margin: 0;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year 2025</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #1a1a2e, #16213e);
+      overflow: hidden;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
+    h1 {
+      font-size: 4rem;
+      position: relative;
+      animation: fadeIn 2s ease-out forwards, textGlow 2s infinite alternate;
+    }
 
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
+    h1 span {
+      color: #e94560;
+      animation: bounce 2s infinite ease-in-out;
+    }
 
-li a.active {
-  background-color: #04AA6D;
-  color: white;
-}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-li a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-</style>
+    @keyframes textGlow {
+      0% {
+        text-shadow: 0 0 10px #e94560, 0 0 20px #e94560, 0 0 40px #ff007f;
+      }
+      100% {
+        text-shadow: 0 0 20px #fff, 0 0 30px #ff4b5c, 0 0 50px #ff007f;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+    }
+
+    .fireworks {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #ff007f, transparent);
+      border-radius: 50%;
+      animation: explode 1.5s linear infinite;
+    }
+
+    @keyframes explode {
+      0% {
+        transform: scale(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(50);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
+  <h1>🎉 Happy <span>New Year</span> 2025! 🎉</h1>
 
-<ul>
-  <li><a class="active" href="index.html">Home</a></li>
-  <li><a href="notes.html">BSC APM NOTES</a></li>
-  <li><a href="solve.html">BSC APM QUESTION SOLVE</a></li>
-  <li><a href="chapter.html">CLASS SIX MATHEMATICS</a></li>
-  <li><a href="https://wa.me/8801767503056">Contact</a></li>
-  <li><a href="#about">About</a></li>
-</ul>
+  <div class="fireworks"></div>
 
-<div style="margin-left:25%;padding:1px 16px;height:1000px;">
-  <h2>Benozir Ahamed Hridoy</h2>
-  <h3>University of Rajshahi <br> B.Sc. in Applied Mathematics</h3>
-<h3>What is Applied Mathematics</h3>
-  <p><i>Applied Mathematicsis</i> a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems in various fields such as science, engineering, economics, medicine, and more. Unlike pure mathematics, which is concerned with abstract concepts and theories, applied mathematics aims to translate theoretical mathematical knowledge into practical applications.
+  <script>
+    // Generate fireworks
+    const fireworksContainer = document.querySelector('.fireworks');
 
-  </p><p>Key features of applied mathematics include:
+    function createFirework() {
+      const firework = document.createElement('div');
+      firework.classList.add('firework');
+      firework.style.top = `${Math.random() * 100}%`;
+      firework.style.left = `${Math.random() * 100}%`;
+      firework.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
 
- <h6>Modeling:</h6>Applied mathematics often involves creating mathematical models to represent real-world systems, phenomena, or processes. These models are used to analyze, predict, or optimize outcomes.
-   
- <h6>Computational Methods:</h6>Applied mathematicians often use numerical methods, algorithms, and computational tools to solve complex problems that cannot be addressed analytically. <dl><h6>Interdisciplinary:</h6>Applied mathematics is highly interdisciplinary. It is commonly used in fields like:
-   <dt>Physics:<dd>for modeling physical phenomena (e.g., fluid dynamics, quantum mechanics).</dd></dt>
-   <dt>Engineering: <dd>for optimization, control theory, signal processing, and more.</dd></dt>
-   <dt>Economics:<dd> for modeling markets, optimizing production, and analyzing economic systems.</dd></dt>
-   <dt>Biology/Medicine: <dd>for modeling population dynamics, the spread of diseases, medical imaging, etc.</dd></dt>
-   <dt>Computer Science:<dd> in algorithms, machine learning, and data analysis.</dd></dt>
-   <dt>Problem Solving:<dd> The focus is on finding solutions to specific, real-world problems. Applied mathematicians often collaborate with professionals from other fields to develop and apply their mathematical tools effectively.</dd></dt>
+      fireworksContainer.appendChild(firework);
 
-<h6>Branches of Applied Mathematics:</h6>
-   <b>Optimization:</b> Finding the best solution from a set of possible choices (e.g., minimizing cost, maximizing profit).<br>
-   <b>Statistics and Probability:</b> Analyzing and predicting outcomes based on data and randomness.<br>
-   <b>Differential Equations:</b> Modeling dynamic systems that change over time (e.g., population growth, heat transfer).<br>
-   <b>Numerical Analysis:</b> Designing algorithms for approximating solutions to mathematical problems.<br>
-   <b>Operations Research:</b> Applying mathematical methods to decision-making and resource allocation.<br>
+      setTimeout(() => {
+        firework.remove();
+      }, 1500);
+    }
 
-In summary, applied mathematics is the practice of using mathematical tools and techniques to solve practical problems, making it a crucial field in both academic research and industry applications.</p>
-</div>
-
+    setInterval(createFirework, 300);
+  </script>
 </body>
 </html>
