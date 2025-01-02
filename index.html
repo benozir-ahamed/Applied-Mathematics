@@ -6,7 +6,7 @@
     <meta name="description" content="Benozir Ahamed Hridoy - A student of Applied Mathematics at the University of Rajshahi. Explore educational content and resources.">
     <meta name="keywords" content="Applied Mathematics, University of Rajshahi, BSC APM Notes, Mathematics Solutions">
     <meta name="author" content="Benozir Ahamed Hridoy">
-    <title>Responsive Professional Design</title>
+    <title>Applied Mathematics Notes</title>
     <style>
         /* General Reset */
         * {
@@ -231,7 +231,8 @@
     <div class="content">
         <h3>What is Applied Mathematics?</h3>
         <p>
-            Applied mathematics is the use of mathematical methods and techniques to solve real-world problems in fields such as engineering, physics, economics, computer science, and more. It involves modeling, analysis, and computation to find practical solutions to complex issues.    </p>
+            Applied Mathematics is a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems...
+        </p>
     </div>
 
     <!-- QNA Section -->
@@ -240,15 +241,6 @@
         <input type="text" id="question" placeholder="Type your question here...">
         <button onclick="getAnswer()">Ask</button>
         <div class="response" id="response"></div>
-    </div>
-
-    <!-- Floating WhatsApp Icon -->
-    <div class="whatsapp-button" onclick="openMessageBox()">💬</div>
-
-    <!-- Message Box -->
-    <div class="message-box" id="messageBox">
-        <input type="text" id="whatsappMessage" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
     </div>
 
     <footer>
@@ -261,22 +253,6 @@
     </footer>
 
     <script>
-        // Open the message box
-        function openMessageBox() {
-            document.getElementById('messageBox').style.display = 'block';
-        }
-
-        // Send message and open WhatsApp
-        function sendMessage() {
-            const message = document.getElementById('whatsappMessage').value;
-            const whatsappLink = `https://wa.me/8801767503056?text=${encodeURIComponent(message)}`;
-            
-            window.open(whatsappLink, '_blank');  // Open WhatsApp in a new tab
-
-            // Hide the message box
-            document.getElementById('messageBox').style.display = 'none';
-        }
-
         async function getAnswer() {
             const question = document.getElementById('question').value.trim();
             const responseDiv = document.getElementById('response');
@@ -286,34 +262,39 @@
                 return;
             }
 
-            const apiUrl = "https://api-inference.huggingface.co/models/EleutherAI/gpt-neo-2.7B";
+            const apiKey = "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"; // Your Hugging Face API key
+            const apiUrl = "https://api-inference.huggingface.co/models/gpt2"; // You can change this to a better model like gpt-neo or distilgpt2
+
             const headers = {
-                "Authorization": "Bearer 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",
+                "Authorization": `Bearer ${apiKey}`,
                 "Content-Type": "application/json"
             };
 
-            const data = JSON.stringify({
-                inputs: question
-            });
+            const payload = {
+                "inputs": question
+            };
 
             try {
                 const response = await fetch(apiUrl, {
-                    method: 'POST',
+                    method: "POST",
                     headers: headers,
-                    body: data
+                    body: JSON.stringify(payload)
                 });
-                const result = await response.json();
-                
-                if (result && result[0] && result[0].generated_text) {
-                    responseDiv.textContent = result[0].generated_text;
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch data from Hugging Face API");
+                }
+
+                const data = await response.json();
+                if (data && data.length > 0) {
+                    responseDiv.textContent = data[0].generated_text || "Sorry, I couldn't generate an answer.";
                 } else {
-                    responseDiv.textContent = "Sorry, I couldn't find an answer.";
+                    responseDiv.textContent = "Sorry, I couldn't understand your question.";
                 }
             } catch (error) {
-                console.error("Error fetching the answer:", error);
-                responseDiv.textContent = "An error occurred while fetching the answer.";
+                responseDiv.textContent = "Error occurred: " + error.message;
             }
-        }
+    }
     </script>
 </body>
     </html>
