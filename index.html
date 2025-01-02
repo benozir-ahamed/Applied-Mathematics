@@ -1,103 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>New Year Animation 2025</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-    }
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #1e3c72, #2a5298);
+            color: white;
+            overflow-x: hidden;
+        }
 
-    .container {
-      text-align: center;
-    }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 20%;
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
 
-    .glowing-text {
-      font-size: 2em;
-      color: #32e4e4;
-      text-shadow: 0 0 10px #32e4e4, 0 0 20px #32e4e4;
-      margin-bottom: 20px;
-      transition: all 0.5s;
-    }
+        ul li a {
+            display: block;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+        }
 
-    .flip-container {
-      display: inline-block;
-      perspective: 1000px;
-    }
+        ul li a.active {
+            background-color: #04AA6D;
+        }
 
-    .flip {
-      position: relative;
-      width: 100px;
-      height: 100px;
-      transform-style: preserve-3d;
-      animation: flipAnimation 2s infinite;
-    }
+        ul li a:hover {
+            background-color: #555;
+        }
 
-    .flip::before,
-    .flip::after {
-      content: attr(data-number);
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: #32e4e4;
-      color: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      backface-visibility: hidden;
-      font-size: 2em;
-      font-weight: bold;
-    }
+        .content {
+            margin-left: 20%;
+            padding: 20px;
+        }
 
-    .flip::before {
-      transform: rotateX(0deg);
-    }
+        .header {
+            text-align: center;
+            padding: 50px 0;
+        }
 
-    .flip::after {
-      transform: rotateX(-180deg);
-    }
+        .header h1 {
+            font-size: 50px;
+            animation: fadeIn 3s ease-in-out;
+        }
 
-    @keyframes flipAnimation {
-      0% {
-        transform: rotateX(0deg);
-      }
-      50% {
-        transform: rotateX(-90deg);
-      }
-      100% {
-        transform: rotateX(-180deg);
-      }
-    }
-  </style>
+        .digital-clock {
+            text-align: center;
+            font-size: 25px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            display: inline-block;
+            margin: 20px auto;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .science-animation {
+            margin: 50px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .science-animation div {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: bounce 2s infinite;
+        }
+
+        .science-animation div:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .science-animation div:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2 class="glowing-text">Happy New Year <span id="year">2025</span></h2>
-    <div class="flip-container">
-      <div class="flip" id="flip"></div>
+    <ul>
+        <li><a class="active" href="index.html">Home</a></li>
+        <li><a href="notes.html">BSC APM NOTES</a></li>
+        <li><a href="solve.html">BSC APM QUESTION SOLVE</a></li>
+        <li><a href="chapter.html">CLASS SIX MATHEMATICS</a></li>
+        <li><a href="https://wa.me/8801767503056">Contact</a></li>
+        <li><a href="#about">About</a></li>
+    </ul>
+
+    <div class="content">
+        <div class="header">
+            <h1>Welcome to 2025</h1>
+            <div id="clock" class="digital-clock"></div>
+        </div>
+
+        <div class="science-animation">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+
+        <h3>What is Applied Mathematics</h3>
+        <p>Applied Mathematics is a branch of mathematics...</p>
+        <!-- Rest of your content -->
     </div>
-  </div>
-  <script>
-    const flipElement = document.getElementById('flip');
-    let currentNumber = 5;
 
-    function updateFlip() {
-      flipElement.setAttribute('data-number', currentNumber);
-      currentNumber = currentNumber === 9 ? 0 : currentNumber + 1;
-    }
-
-    setInterval(updateFlip, 2000);
-    updateFlip();
-  </script>
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').innerText = `${hours}:${minutes}:${seconds}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
-</html>
+                   </html>
