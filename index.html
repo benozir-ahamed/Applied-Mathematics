@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Design</title>
+    <title>Responsive Professional Design</title>
     <style>
-        /* General Styling */
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
@@ -14,43 +14,43 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white;
         }
 
         header {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 20px;
             text-align: center;
-            animation: fadeIn 2s;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
         }
 
         header h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+            font-size: 2rem;
         }
 
         header h3 {
-            font-size: 1.5rem;
+            font-size: 1rem;
             color: #ccc;
         }
 
         nav {
             display: flex;
+            flex-wrap: wrap;
             justify-content: center;
             background: rgba(0, 0, 0, 0.8);
             padding: 10px 0;
             position: sticky;
             top: 0;
+            z-index: 1000;
         }
 
         nav a {
-            text-decoration: none;
             color: white;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background: #555;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px;
             border-radius: 5px;
+            background: #555;
             transition: background 0.3s;
         }
 
@@ -64,98 +64,82 @@
         }
 
         .content h3 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin: 20px 0;
         }
 
         .content p {
-            font-size: 1.2rem;
+            font-size: 1rem;
             line-height: 1.6;
             margin: 20px auto;
-            width: 80%;
+            width: 90%;
+            max-width: 800px;
         }
 
         /* Digital Clock */
         .clock-container {
-            text-align: center;
-            margin: 20px 0;
+            margin: 20px auto;
         }
 
         .clock {
             font-size: 2rem;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 5px;
             display: inline-block;
         }
 
-        /* Study Animation */
-        .study-animation {
-            margin: 40px 0;
-            text-align: center;
-        }
-
-        .study-animation div {
-            width: 100px;
-            height: 70px;
-            background: rgba(255, 255, 255, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 10px;
-            margin: 0 auto;
-            position: relative;
-            animation: glow 2s infinite;
-        }
-
-        .study-animation div::before {
-            content: '';
-            position: absolute;
-            top: -10px;
-            left: 10px;
-            width: 80px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 5px;
-            animation: flip 2s infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(255, 255, 255, 0.7);
-            }
-        }
-
-        @keyframes flip {
-            0% {
-                transform: rotateX(0);
-            }
-            50% {
-                transform: rotateX(180deg);
-            }
-            100% {
-                transform: rotateX(0);
-            }
-        }
-
         /* Rajshahi University Logo Animation */
-        .ru-container {
+        .ru-logo-container {
+            margin: 50px auto;
             text-align: center;
-            margin: 50px 0;
         }
 
-        .ru-logo img {
+        .ru-logo {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: rotateLogo 3s infinite linear;
+        }
+
+        .ru-logo:before {
+            content: '';
             width: 120px;
-            animation: spin 3s linear infinite;
+            height: 120px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
         }
 
-        @keyframes spin {
+        .ru-logo h2 {
+            position: relative;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ff416c;
+            animation: scaleText 3s infinite alternate;
+        }
+
+        @keyframes rotateLogo {
             0% {
                 transform: rotate(0deg);
             }
             100% {
                 transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scaleText {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.2);
             }
         }
 
@@ -167,12 +151,28 @@
             margin-top: 40px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
             }
-            to {
-                opacity: 1;
+
+            .content h3 {
+                font-size: 1.5rem;
+            }
+
+            .clock {
+                font-size: 1.5rem;
+            }
+
+            .ru-logo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .ru-logo:before {
+                width: 100px;
+                height: 100px;
             }
         }
     </style>
@@ -185,8 +185,8 @@
 
     <nav>
         <a href="index.html">Home</a>
-        <a href="notes.html">BSC APM Notes</a>
-        <a href="solve.html">Question Solve</a>
+        <a href="notes.html">APM Notes</a>
+        <a href="solve.html">APM Question Solve</a>
         <a href="chapter.html">Class Six Mathematics</a>
         <a href="https://wa.me/8801767503056">Contact</a>
         <a href="#about">About</a>
@@ -197,26 +197,25 @@
             <div id="clock" class="clock"></div>
         </div>
 
-        <div class="study-animation">
-            <div></div>
-        </div>
-
         <h3>What is Applied Mathematics?</h3>
-        <p>Applied Mathematics is a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems...</p>
+        <p>
+            Applied Mathematics is a branch of mathematics that focuses on using mathematical techniques and principles to solve real-world problems...
+        </p>
 
-        <div class="ru-container">
+        <div class="ru-logo-container">
             <div class="ru-logo">
-                <img src="https://images.app.goo.gl/mRr53xpMi4BtuVqA6" alt="Rajshahi University Logo">
+                <h2>RU</h2>
             </div>
-            <h3>Welcome to Math Notes Pro</h3>
+            <h3>University of Rajshahi</h3>
         </div>
     </div>
 
     <footer>
-        &copy; 2025 Benozir Ahamed Hridoy | All Rights Reserved
+        &copy; 2025 Math notes pro | All Rights Reserved
     </footer>
 
     <script>
+        // Digital Clock Functionality
         function updateClock() {
             const now = new Date();
             const hours = String(now.getHours()).padStart(2, '0');
