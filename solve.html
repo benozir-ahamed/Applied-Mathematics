@@ -3,140 +3,143 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Applied Mathematics Notes - Pro</title>
+  <title>Math Notes Pro - Sleek Design</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f4f4f9;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
       color: #333;
     }
-    .navbar {
-      background: linear-gradient(90deg, #0073e6, #00c6ff);
-      color: white;
-    }
-    .navbar-brand {
-      font-weight: bold;
-    }
     .sidebar {
-      background: #fff;
-      border-right: 1px solid #ddd;
-      height: 100vh;
-      overflow-y: auto;
-      padding: 20px;
-    }
-    .chapter-list li {
-      margin-bottom: 15px;
-    }
-    .chapter-btn {
-      background: #0073e6;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #004d99;
       color: white;
-      border: none;
-      padding: 10px 15px;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background 0.3s;
+      padding: 20px;
+      overflow-y: auto;
     }
-    .chapter-btn:hover {
-      background: #005bb5;
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
     }
-    .topics {
-      list-style: none;
-      padding-left: 20px;
-      display: none;
-    }
-    .topics a {
-      color: #0073e6;
+    .sidebar a {
+      color: white;
       text-decoration: none;
+      font-size: 16px;
+      margin-bottom: 10px;
+      display: block;
     }
-    .topics a:hover {
+    .sidebar a:hover {
       text-decoration: underline;
     }
-    .progress-bar {
-      height: 5px;
-      background: #0073e6;
-      margin-top: 5px;
+    .main-content {
+      margin-left: 270px;
+      padding: 20px;
     }
-    .dark-mode {
-      background-color: #1e1e2f;
+    .chapter-card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 20px;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .chapter-card:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(-5px);
+    }
+    .chapter-title {
+      font-weight: 600;
+      color: #004d99;
+    }
+    .topic-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .topic-list li {
+      margin: 10px 0;
+    }
+    .topic-list a {
+      color: #555;
+      text-decoration: none;
+    }
+    .topic-list a:hover {
+      color: #004d99;
+    }
+    footer {
+      background-color: #004d99;
       color: white;
-    }
-    .dark-mode .sidebar, .dark-mode .navbar {
-      background-color: #333;
-      color: white;
-    }
-    .dark-mode .chapter-btn {
-      background-color: #444;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Math Notes Pro</a>
-      <form class="d-flex ms-auto" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search notes..." aria-label="Search">
-        <button class="btn btn-light" type="submit">Search</button>
-      </form>
-      <button class="btn btn-outline-light ms-3" id="darkModeToggle">Dark Mode</button>
-    </div>
-  </nav>
-
   <!-- Sidebar -->
-  <div class="d-flex">
-    <aside class="sidebar col-lg-3 col-md-4">
-      <h2 class="mb-4">Chapters</h2>
-      <ul class="chapter-list">
-        <li>
-          <button class="chapter-btn">Fundamental of Mathematics</button>
-          <ul class="topics">
-            <li> <a href="#topic1">Topics 1.1</a></li>
-            <li> <a href="#topic2">Topics 1.2</a></li>
-          </ul>
-        </li>
-        <li>
-          <button class="chapter-btn">Higher Algebra & Trigonometry</button>
-          <ul class="topics">
-            <li> <a href="#topic3">Topics 2.1</a></li>
-            <li> <a href="#topic4">Topics 2.2</a></li>
-          </ul>
-        </li>
-        <li>
-          <button class="chapter-btn">Matrix Theory</button>
-          <ul class="topics">
-            <li> <a href="#topic5">Topics 3.1</a></li>
-            <li> <a href="#topic6">Topics 3.2</a></li>
-          </ul>
-        </li>
-        <!-- Additional chapters here -->
+  <aside class="sidebar">
+    <h2>Math Notes Pro</h2>
+    <nav>
+      <a href="#fundamentals">Fundamentals of Mathematics</a>
+      <a href="#algebra">Higher Algebra & Trigonometry</a>
+      <a href="#matrix">Matrix Theory</a>
+      <a href="#calculus">Differential Calculus</a>
+      <a href="#mechanics">Mechanics, Wave & Sound</a>
+      <a href="#matlab">MATLAB</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1 class="mb-4">Welcome to Math Notes Pro</h1>
+    <div id="fundamentals" class="chapter-card">
+      <h2 class="chapter-title">Fundamentals of Mathematics</h2>
+      <ul class="topic-list">
+        <li><a href="#topic1">Topic 1.1: Introduction</a></li>
+        <li><a href="#topic2">Topic 1.2: Advanced Concepts</a></li>
       </ul>
-    </aside>
-    <!-- Content -->
-    <div class="content col-lg-9 col-md-8 p-4">
-      <h1>Welcome to Math Notes Pro</h1>
-      <p>Select a chapter to get started.</p>
-      <div class="progress-bar w-50"></div>
     </div>
+    <div id="algebra" class="chapter-card">
+      <h2 class="chapter-title">Higher Algebra & Trigonometry</h2>
+      <ul class="topic-list">
+        <li><a href="#topic3">Topic 2.1: Algebra Basics</a></li>
+        <li><a href="#topic4">Topic 2.2: Trigonometric Identities</a></li>
+      </ul>
+    </div>
+    <div id="matrix" class="chapter-card">
+      <h2 class="chapter-title">Matrix Theory</h2>
+      <ul class="topic-list">
+        <li><a href="#topic5">Topic 3.1: Matrix Basics</a></li>
+        <li><a href="#topic6">Topic 3.2: Applications</a></li>
+      </ul>
+    </div>
+    <!-- Additional chapters here -->
   </div>
 
-  <script>
-    // Dropdown toggle for topics
-    document.querySelectorAll('.chapter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const topics = btn.nextElementSibling;
-        topics.style.display = topics.style.display === 'block' ? 'none' : 'block';
-      });
-    });
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Math Notes Pro. All Rights Reserved.</p>
+  </footer>
 
-    // Dark mode toggle
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    darkModeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark-mode');
+  <script>
+    // Smooth scrolling for sidebar links
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
     });
   </script>
 </body>
-          </html>
+        </html>
