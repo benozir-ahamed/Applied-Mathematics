@@ -196,7 +196,7 @@
     </footer>
 
     <script>
-        function getAnswer() {
+        async function getAnswer() {
             const question = document.getElementById('question').value.trim();
             const responseDiv = document.getElementById('response');
 
@@ -205,14 +205,35 @@
                 return;
             }
 
-            // Mock answer generation (Replace with actual backend logic)
-            const answers = {
-                "What is Applied Mathematics?": "Applied Mathematics is the application of mathematical methods by different fields such as science and engineering.",
-                "Who is Benozir Ahamed Hridoy?": "Benozir Ahamed Hridoy is a student of Applied Mathematics at the University of Rajshahi.",
+            const apiKey = "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"; // Your Hugging Face API key
+            const apiUrl = "https://api-inference.huggingface.co/models/gpt2"; // The model you are using
+
+            const headers = {
+                "Authorization": `Bearer ${apiKey}`,
+                "Content-Type": "application/json"
             };
 
-            responseDiv.textContent = answers[question] || "Sorry, I don't have an answer for that question right now.";
+            const payload = {
+                "inputs": question
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: "POST",
+                    headers: headers,
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                if (data && data[0]) {
+                    responseDiv.textContent = data[0].generated_text || "Sorry, I couldn't generate an answer.";
+                } else {
+                    responseDiv.textContent = "Sorry, I couldn't understand your question.";
+                }
+            } catch (error) {
+                responseDiv.textContent = "Error occurred. Please try again.";
+            }
         }
     </script>
 </body>
-                                               </html>
+</html>
