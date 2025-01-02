@@ -261,12 +261,11 @@
     </div>
 
     <!-- Floating WhatsApp Icon -->
-    <div class="chat-button" onclick="toggleChatBox()">💬</div>
+    <div class="whatsapp-button" onclick="openMessageBox()">💬</div>
 
-    <!-- Chat Box -->
-    <div class="chat-container" id="chatBox">
-        <div class="messages" id="messages"></div>
-        <input type="text" id="messageInput" placeholder="Type your message...">
+    <!-- Message Box -->
+    <div class="message-box" id="messageBox">
+        <input type="text" id="whatsappMessage" placeholder="Type your message here...">
         <button onclick="sendMessage()">Send</button>
     </div>
 
@@ -280,39 +279,20 @@
     </footer>
 
     <script>
-        // Toggle chat box visibility
-        function toggleChatBox() {
-            const chatBox = document.getElementById('chatBox');
-            chatBox.style.display = (chatBox.style.display === 'block') ? 'none' : 'block';
+        // Open the message box
+        function openMessageBox() {
+            document.getElementById('messageBox').style.display = 'block';
         }
 
-        // Send the message
+        // Send message and open WhatsApp
         function sendMessage() {
-            const messageInput = document.getElementById('messageInput');
-            const message = messageInput.value.trim();
-            const messagesDiv = document.getElementById('messages');
+            const message = document.getElementById('whatsappMessage').value;
+            const whatsappLink = `https://wa.me/8801767503056?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappLink, '_blank');  // Open WhatsApp in a new tab
 
-            if (message) {
-                // Display the user message
-                const userMessage = document.createElement('div');
-                userMessage.classList.add('message', 'user');
-                userMessage.textContent = message;
-                messagesDiv.appendChild(userMessage);
-
-                // Clear the input field
-                messageInput.value = '';
-
-                // Show a bot response
-                setTimeout(() => {
-                    const botMessage = document.createElement('div');
-                    botMessage.classList.add('message', 'bot');
-                    botMessage.textContent = "This is an automated reply. Thank you for your message!";
-                    messagesDiv.appendChild(botMessage);
-
-                    // Auto-scroll to the latest message
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                }, 1000);
-            }
+            // Hide the message box
+            document.getElementById('messageBox').style.display = 'none';
         }
 
         async function getAnswer() {
@@ -354,4 +334,4 @@
         }
     </script>
 </body>
-</html>
+    </html>
