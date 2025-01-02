@@ -5,61 +5,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Class Six Mathematics - Chapters</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f9f9f9;
+      background-color: #f9f9f9;
       color: #333;
     }
-    .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 250px;
+    .navbar {
       background-color: #2c3e50;
-      padding: 20px;
+      padding: 10px 20px;
+    }
+    .navbar-brand {
       color: white;
+      font-weight: bold;
+      font-size: 24px;
+      text-decoration: none;
     }
-    .sidebar h4 {
-      font-size: 18px;
-      margin-bottom: 20px;
+    .hero-section {
+      background: linear-gradient(135deg, #1abc9c, #16a085);
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
     }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-    .sidebar ul li {
+    .hero-section h1 {
+      font-size: 36px;
       margin-bottom: 10px;
     }
-    .sidebar ul li a {
-      color: white;
-      text-decoration: none;
-      display: block;
-      padding: 10px;
-      border-radius: 5px;
-      transition: background 0.3s, color 0.3s;
-    }
-    .sidebar ul li a.active,
-    .sidebar ul li a:hover {
-      background-color: #1abc9c;
-      color: white;
-    }
-    .content {
-      margin-left: 270px;
-      padding: 20px;
-    }
-    .content h2 {
-      font-weight: bold;
-      margin-bottom: 20px;
+    .hero-section p {
+      font-size: 18px;
     }
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
+      padding: 20px;
     }
     .chapter-card {
       background-color: white;
@@ -72,16 +54,19 @@
       transform: translateY(-5px);
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
-    .chapter-card h4 {
-      margin: 0 0 10px;
-      font-weight: 600;
-      color: #1abc9c;
+    .chapter-title {
+      font-weight: bold;
+      color: #16a085;
+      margin-bottom: 10px;
     }
     .chapter-card a {
       color: #333;
       text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
     }
     .chapter-card a:hover {
+      color: #16a085;
       text-decoration: underline;
     }
     footer {
@@ -97,32 +82,35 @@
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="navbar-brand" href="#">Class Six Mathematics</a>
+  </nav>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h4>Class Six Mathematics</h4>
-    <ul>
-      <li><a href="#" class="active">Chapter 1: Number System</a></li>
-      <li><a href="#">Chapter 2: Algebra Basics</a></li>
-      <li><a href="#">Chapter 3: Geometry</a></li>
-    </ul>
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <h1>Welcome to Class Six Mathematics</h1>
+    <p>Explore the chapters and topics below to excel in your studies!</p>
   </div>
 
-  <!-- Content -->
-  <div class="content">
-    <h2>Chapters Overview</h2>
+  <!-- Chapters Section -->
+  <div class="container">
     <div class="grid-container">
       <div class="chapter-card">
-        <h4>Chapter 1</h4>
+        <h2 class="chapter-title">Chapter 1</h2>
         <a href="table.html">Number System</a>
       </div>
       <div class="chapter-card">
-        <h4>Chapter 2</h4>
+        <h2 class="chapter-title">Chapter 2</h2>
         <a href="#">Algebra Basics</a>
       </div>
       <div class="chapter-card">
-        <h4>Chapter 3</h4>
+        <h2 class="chapter-title">Chapter 3</h2>
         <a href="#">Geometry</a>
+      </div>
+      <div class="chapter-card">
+        <h2 class="chapter-title">Chapter 4</h2>
+        <a href="#">Statistics</a>
       </div>
     </div>
   </div>
@@ -132,5 +120,6 @@
     <p>&copy; 2025 Class Six Mathematics. All Rights Reserved.</p>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-</html>
+          </html>
