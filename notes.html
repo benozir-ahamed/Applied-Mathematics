@@ -1,57 +1,76 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-body {
-  margin: 0;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 25%;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-li a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-}
-
-li a.active {
-  background-color: #04AA6D;
-  color: black;
-}
-
-li a:hover:not(.active) {
-  background-color: #333333;
-  color: red;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter List</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Chapters</h2>
+      <ul class="chapter-list">
+        <li>
+          <button class="chapter-btn">Chapter 1</button>
+          <ul class="topics">
+            <li>Topic 1.1</li>
+            <li>Topic 1.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 2</button>
+          <ul class="topics">
+            <li>Topic 2.1</li>
+            <li>Topic 2.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 3</button>
+          <ul class="topics">
+            <li>Topic 3.1</li>
+            <li>Topic 3.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 4</button>
+          <ul class="topics">
+            <li>Topic 4.1</li>
+            <li>Topic 4.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 5</button>
+          <ul class="topics">
+            <li>Topic 5.1</li>
+            <li>Topic 5.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 6</button>
+          <ul class="topics">
+            <li>Topic 6.1</li>
+            <li>Topic 6.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 7</button>
+          <ul class="topics">
+            <li>Topic 7.1</li>
+            <li>Topic 7.2</li>
+          </ul>
+        </li>
+        <li>
+          <button class="chapter-btn">Chapter 8</button>
+          <ul class="topics">
+            <li>Topic 8.1</li>
+            <li>Topic 8.2</li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+  </div>
 
-<h2>Class Six Mathematics</h2>
-<h4>Chapter:</h4>
-
-<ol>
-    <ul>
-    <li>Chapter 1</li>
-    <li> <a href="table.html">Number System</a></li>
-    <li>Chapter 2</li>
-    </ul>
-  </li>
-<ol>
-  <li>Chapter 2</li>
-  <li>Chapter 3</li>
-</ol>
-
+  <script src="script.js"></script>
 </body>
-</html>
+  </html>
