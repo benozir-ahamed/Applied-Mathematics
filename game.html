@@ -10,6 +10,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column;
       height: 100vh;
       margin: 0;
       background-color: #f4f4f9;
@@ -45,16 +46,41 @@
     .yellow { background-color: #f39c12; }
     .purple { background-color: #9b59b6; }
     .orange { background-color: #e67e22; }
+
+    .info {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .score {
+      font-size: 24px;
+    }
+
+    .level {
+      font-size: 24px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
+
+  <div class="info">
+    <div class="score">Score: 0</div>
+    <div class="level">Level: 1</div>
+  </div>
+
   <div class="board" id="board"></div>
-  
+
   <script>
     const board = document.getElementById("board");
+    const scoreDisplay = document.querySelector(".score");
+    const levelDisplay = document.querySelector(".level");
+
     const width = 8;
     const candyColors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
     let squares = [];
+    let score = 0;
+    let level = 1;
 
     // Create the game board
     function createBoard() {
@@ -65,7 +91,6 @@
         board.appendChild(square);
         squares.push(square);
 
-        // Randomly assign a color to each square
         let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
         square.style.backgroundColor = randomColor;
       }
@@ -82,6 +107,7 @@
           currentSquare.style.backgroundColor = '';
           squares[i + 1].style.backgroundColor = '';
           squares[i + 2].style.backgroundColor = '';
+          score += 10;
         }
 
         // Check vertically
@@ -89,6 +115,7 @@
           currentSquare.style.backgroundColor = '';
           squares[i + width].style.backgroundColor = '';
           squares[i + width * 2].style.backgroundColor = '';
+          score += 10;
         }
       }
     }
@@ -103,23 +130,49 @@
       }
     }
 
-    // Event listener for clicking candies
+    // Level up
+    function levelUp() {
+      if (score >= level * 50) {
+        level++;
+        levelDisplay.textContent = `Level: ${level}`;
+        score = 0;
+        scoreDisplay.textContent = `Score: ${score}`;
+        alert(`Level Up! You're now at Level ${level}`);
+      }
+    }
+
+    // Event listener for swapping candies
+    let firstSquare = null;
+    let secondSquare = null;
+
     board.addEventListener('click', function (e) {
       const clickedSquare = e.target;
-      const clickedId = parseInt(clickedSquare.id);
-
-      // Logic for swapping candies when clicked
-      if (clickedSquare.classList.contains('cell')) {
-        const clickedColor = clickedSquare.style.backgroundColor;
+      if (!firstSquare) {
+        firstSquare = clickedSquare;
+      } else if (firstSquare === clickedSquare) {
+        firstSquare = null;
+      } else {
+        secondSquare = clickedSquare;
+        swapCandies(firstSquare, secondSquare);
         setTimeout(() => {
-          // Check if any matches are formed
           checkMatches();
           fillEmptySpaces();
-        }, 200);
+          levelUp();
+        }, 300);
+        firstSquare = null;
+        secondSquare = null;
       }
     });
 
+    // Swap candies function
+    function swapCandies(square1, square2) {
+      const tempColor = square1.style.backgroundColor;
+      square1.style.backgroundColor = square2.style.backgroundColor;
+      square2.style.backgroundColor = tempColor;
+    }
+
+    // Start the game
     createBoard();
   </script>
 </body>
-</html>
+  </html>
