@@ -20,7 +20,6 @@
             font-family: Arial, sans-serif;
             background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white;
-            position: relative;
             overflow-x: hidden;
         }
 
@@ -30,26 +29,34 @@
         }
 
         header {
-            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            position: relative;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        header .logo {
+            width: 60px;
+            animation: spin 5s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         header h1 {
             font-size: 2rem;
+            margin-left: 10px;
             animation: slideIn 2s ease;
         }
 
-        header h3 {
-            font-size: 1rem;
-            color: #ccc;
-        }
-
         #themeToggle {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             padding: 10px;
             cursor: pointer;
             border: none;
@@ -134,7 +141,61 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* Animations */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 24px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+        }
+
+        .message-box {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            color: white;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .message-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .message-box button {
+            width: 100%;
+            padding: 10px;
+            background: #04AA6D;
+            color: white;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .message-box button:hover {
+            background: #028858;
+        }
+
         @keyframes slideIn {
             from {
                 transform: translateY(-50px);
@@ -155,7 +216,6 @@
             }
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             nav {
                 flex-direction: column;
@@ -171,8 +231,8 @@
 </head>
 <body>
     <header>
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/77/University_of_Rajshahi_Logo.png" alt="Rajshahi University Logo" class="logo">
         <h1>Benozir Ahamed Hridoy</h1>
-        <h3>University of Rajshahi | B.Sc. in Applied Mathematics</h3>
         <button id="themeToggle">Dark Mode</button>
     </header>
 
@@ -191,6 +251,15 @@
             Applied mathematics is the use of mathematical methods and techniques to solve real-world problems in fields such as engineering, physics, economics, computer science, and more. It involves modeling, analysis, and computation to find practical solutions to complex issues.
         </p>
         <div class="clock" id="clock"></div>
+    </div>
+
+    <!-- Floating WhatsApp Icon -->
+    <div class="whatsapp-button" onclick="openMessageBox()">💬</div>
+
+    <!-- Message Box -->
+    <div class="message-box" id="messageBox">
+        <input type="text" id="whatsappMessage" placeholder="Type your message here...">
+        <button onclick="sendMessage()">Send</button>
     </div>
 
     <footer>
@@ -216,6 +285,23 @@
         }
         setInterval(updateClock, 1000);
         updateClock();
+
+        // Floating Message Box
+        function openMessageBox() {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.style.display = messageBox.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function sendMessage() {
+            const message = document.getElementById('whatsappMessage').value.trim();
+            if (!message) {
+                alert('Please write a message to send!');
+                return;
+            }
+            const whatsappUrl = `https://wa.me/8801767503056?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            document.getElementById('messageBox').style.display = 'none';
+        }
     </script>
 </body>
-            </html>
+    </html>
