@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Benozir Ahamed Hridoy - A student of Applied Mathematics at the University of Rajshahi. Explore educational content and resources.">
-    <meta name="keywords" content="Applied Mathematics, University of Rajshahi, BSC APM Notes, Mathematics Solutions">
+    <meta name="description" content="Benozir Ahamed Hridoy - Explore educational content and resources for Applied Mathematics.">
+    <meta name="keywords" content="Applied Mathematics, University of Rajshahi, Notes, Solutions">
     <meta name="author" content="Benozir Ahamed Hridoy">
-    <title>Responsive Professional Design</title>
+    <title>Professional Home Page</title>
     <style>
         /* General Reset */
         * {
@@ -17,77 +17,64 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #4facfe, #00f2fe);
-            color: white;
-            overflow-x: hidden;
-        }
-
-        body.dark-mode {
-            background: #121212;
-            color: white;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f4f6;
+            color: #333;
         }
 
         header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
             padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            position: relative;
         }
 
         header .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
             width: 60px;
-            animation: spin 5s linear infinite;
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
         }
 
         header h1 {
-            font-size: 2rem;
-            margin-left: 10px;
-            animation: slideIn 2s ease;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
-        #themeToggle {
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
+        header p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-btn {
             background: #04AA6D;
             color: white;
-            transition: transform 0.3s;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
         }
 
-        #themeToggle:hover {
-            transform: scale(1.1);
+        .hero-btn:hover {
+            background: #028858;
         }
 
         nav {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.8);
+            background: #333;
             padding: 10px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 10px 15px;
-            margin: 5px;
+            padding: 10px 20px;
+            margin: 0 5px;
             border-radius: 5px;
-            background: #555;
             transition: background 0.3s;
         }
 
@@ -95,136 +82,59 @@
             background: #04AA6D;
         }
 
-        nav a.active {
-            background: #04AA6D;
-            font-weight: bold;
-        }
-
-        nav.dark-mode {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
         .content {
-            padding: 20px;
             text-align: center;
+            padding: 50px 20px;
         }
 
-        .content h3 {
-            font-size: 1.8rem;
-            margin: 20px 0;
+        .content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
         }
 
         .content p {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            color: #555;
             line-height: 1.6;
-            margin: 20px auto;
-            width: 90%;
             max-width: 800px;
-        }
-
-        .clock {
-            margin: 20px 0;
-            font-size: 2rem;
-            font-weight: bold;
-            animation: fadeIn 2s ease;
+            margin: 0 auto;
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
-            color: #ccc;
+            background: #333;
+            color: white;
             text-align: center;
             padding: 20px 0;
             margin-top: 40px;
         }
 
-        footer.dark-mode {
-            background: rgba(255, 255, 255, 0.1);
+        footer a {
+            color: #04AA6D;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50%;
-            padding: 15px;
-            font-size: 24px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.3s;
+        footer a:hover {
+            text-decoration: underline;
         }
 
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-        }
-
-        .message-box {
-            display: none;
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            color: white;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .message-box input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .message-box button {
-            width: 100%;
-            padding: 10px;
-            background: #04AA6D;
-            color: white;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .message-box button:hover {
-            background: #028858;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
             nav {
                 flex-direction: column;
             }
-            .content {
-                padding: 10px;
-            }
-            footer {
-                font-size: 0.8rem;
+
+            nav a {
+                margin: 5px 0;
             }
         }
     </style>
@@ -232,76 +142,33 @@
 <body>
     <header>
         <img src="https://upload.wikimedia.org/wikipedia/en/7/77/University_of_Rajshahi_Logo.png" alt="Rajshahi University Logo" class="logo">
-        <h1>Benozir Ahamed Hridoy</h1>
-        <button id="themeToggle">Dark Mode</button>
+        <h1>Welcome to Applied Mathematics</h1>
+        <p>Your trusted resource for notes, solutions, and knowledge.</p>
+        <button class="hero-btn" onclick="window.location.href='notes.html'">Explore Notes</button>
     </header>
 
     <nav>
-        <a href="index.html" class="active">Home</a>
-        <a href="notes.html">APM Notes</a>
-        <a href="solve.html">APM Question Solve</a>
-        <a href="chapter.html">Class Six Mathematics</a>
-        <a href="https://wa.me/8801767503056" aria-label="WhatsApp Contact">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="notes.html">Notes</a>
+        <a href="solve.html">Solutions</a>
+        <a href="contact.html">Contact</a>
         <a href="#about">About</a>
     </nav>
 
     <div class="content">
-        <h3>What is Applied Mathematics?</h3>
+        <h2>What is Applied Mathematics?</h2>
         <p>
-            Applied mathematics is the use of mathematical methods and techniques to solve real-world problems in fields such as engineering, physics, economics, computer science, and more. It involves modeling, analysis, and computation to find practical solutions to complex issues.
+            Applied Mathematics uses mathematical methods to solve practical problems in science, engineering, economics, and more. It bridges the gap between theory and application, helping professionals understand and design complex systems.
         </p>
-        <div class="clock" id="clock"></div>
-    </div>
-
-    <!-- Floating WhatsApp Icon -->
-    <div class="whatsapp-button" onclick="openMessageBox()">💬</div>
-
-    <!-- Message Box -->
-    <div class="message-box" id="messageBox">
-        <input type="text" id="whatsappMessage" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
     </div>
 
     <footer>
-        <p>&copy; 2025 Math Notes Pro | All Rights Reserved</p>
+        <p>&copy; 2025 Benozir Ahamed Hridoy | All Rights Reserved</p>
+        <p>
+            <a href="https://facebook.com" target="_blank">Facebook</a> |
+            <a href="https://twitter.com" target="_blank">Twitter</a> |
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </p>
     </footer>
-
-    <script>
-        // Dark Mode Toggle
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            document.querySelector('nav').classList.toggle('dark-mode');
-            document.querySelector('footer').classList.toggle('dark-mode');
-        });
-
-        // Digital Clock
-        function updateClock() {
-            const clock = document.getElementById('clock');
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            const seconds = String(now.getSeconds()).padStart(2, '0');
-            clock.textContent = `${hours}:${minutes}:${seconds}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Floating Message Box
-        function openMessageBox() {
-            const messageBox = document.getElementById('messageBox');
-            messageBox.style.display = messageBox.style.display === 'block' ? 'none' : 'block';
-        }
-
-        function sendMessage() {
-            const message = document.getElementById('whatsappMessage').value.trim();
-            if (!message) {
-                alert('Please write a message to send!');
-                return;
-            }
-            const whatsappUrl = `https://wa.me/8801767503056?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            document.getElementById('messageBox').style.display = 'none';
-        }
-    </script>
 </body>
     </html>
