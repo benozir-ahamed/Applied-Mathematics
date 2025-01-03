@@ -1,227 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Candy Crush</title>
-  <style>
-    /* Styling the page */
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      margin: 0;
-      background-color: #f4f4f9;
-    }
-
-    .board {
-      display: grid;
-      grid-template-columns: repeat(8, 50px);
-      grid-template-rows: repeat(8, 50px);
-      gap: 5px;
-      border: 1px solid #333;
-    }
-
-    .cell {
-      width: 50px;
-      height: 50px;
-      border: 1px solid #ddd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      position: relative;
-    }
-
-    .candy {
-      width: 40px;
-      height: 40px;
-      border-radius: 5px;
-    }
-
-    .red { background-color: #e74c3c; }
-    .blue { background-color: #3498db; }
-    .green { background-color: #2ecc71; }
-    .yellow { background-color: #f39c12; }
-    .purple { background-color: #9b59b6; }
-    .orange { background-color: #e67e22; }
-
-    .striped {
-      background: repeating-linear-gradient(45deg, transparent, transparent 15px, #fff 15px, #fff 30px);
-    }
-
-    .wrapped {
-      background-color: #f39c12;
-      border-radius: 50%;
-    }
-
-    .colorBomb {
-      background-color: #9b59b6;
-    }
-
-    .info {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    .score, .level, .timer {
-      font-size: 24px;
-    }
-
-    .game-over {
-      display: none;
-      text-align: center;
-      font-size: 30px;
-      color: #e74c3c;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Math Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .game-container {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .game-container h2 {
+            margin-top: 0;
+            font-size: 26px;
+            color: #333;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .input-box {
+            padding: 10px;
+            font-size: 18px;
+            margin: 10px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .game-message {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="info">
-    <div class="score">Score: 0</div>
-    <div class="level">Level: 1</div>
-    <div class="timer">Time: 60</div>
-  </div>
+    <h1>Welcome to Fun Math Games</h1>
 
-  <div class="game-over" id="gameOver">Game Over!</div>
+    <!-- Math Quiz Game -->
+    <div class="game-container" id="mathQuizGame">
+        <h2>Math Quiz</h2>
+        <div id="mathQuizQuestion"></div>
+        <input type="number" id="mathAnswer" class="input-box" placeholder="Your Answer" />
+        <button class="button" onclick="checkMathQuizAnswer()">Submit</button>
+        <div id="mathQuizMessage" class="game-message"></div>
+    </div>
 
-  <div class="board" id="board"></div>
+    <!-- Number Guessing Game -->
+    <div class="game-container" id="numberGuessGame">
+        <h2>Number Guessing Game</h2>
+        <input type="number" id="guessInput" class="input-box" placeholder="Enter your guess" />
+        <button class="button" onclick="checkGuess()">Guess</button>
+        <div id="numberGuessMessage" class="game-message"></div>
+    </div>
 
-  <script>
-    const board = document.getElementById("board");
-    const scoreDisplay = document.querySelector(".score");
-    const levelDisplay = document.querySelector(".level");
-    const timerDisplay = document.querySelector(".timer");
-    const gameOverDisplay = document.getElementById("gameOver");
+    <!-- Calculator Challenge Game -->
+    <div class="game-container" id="calculatorChallengeGame">
+        <h2>Calculator Challenge</h2>
+        <div id="calcChallengeQuestion"></div>
+        <input type="number" id="calcAnswer" class="input-box" placeholder="Your Answer" />
+        <button class="button" onclick="checkCalculatorAnswer()">Submit</button>
+        <div id="calcChallengeMessage" class="game-message"></div>
+    </div>
 
-    const width = 8;
-    const candyColors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
-    const specialCandies = ['striped', 'wrapped', 'colorBomb']; 
-    let squares = [];
-    let score = 0;
-    let level = 1;
-    let timeLeft = 60;
-    let timerInterval;
-    let goal = 10; // Example goal: Clear 10 candies to win
+    <!-- Time Challenge Game -->
+    <div class="game-container" id="timeChallengeGame">
+        <h2>Time Challenge</h2>
+        <div id="timeChallengeTimer">Time Left: 10</div>
+        <div id="timeChallengeQuestion"></div>
+        <button class="button" onclick="startTimeChallenge()">Start Challenge</button>
+        <div id="timeChallengeMessage" class="game-message"></div>
+    </div>
 
-    // Create the game board
-    function createBoard() {
-      for (let i = 0; i < width * width; i++) {
-        const square = document.createElement('div');
-        square.setAttribute('id', i);
-        square.classList.add('cell');
-        board.appendChild(square);
-        squares.push(square);
+    <script>
+        // Math Quiz Game
+        const mathQuizQuestions = [
+            { question: 'What is 5 + 3?', answer: 8 },
+            { question: 'What is 9 - 4?', answer: 5 },
+            { question: 'What is 7 * 2?', answer: 14 }
+        ];
+        let currentMathQuestionIndex = 0;
 
-        let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
-        square.style.backgroundColor = randomColor;
-
-        // Randomly add special candy
-        if (Math.random() < 0.1) {
-          let specialCandy = specialCandies[Math.floor(Math.random() * specialCandies.length)];
-          square.classList.add(specialCandy);
-        }
-      }
-    }
-
-    // Check for matches and handle special candies
-    function checkMatches() {
-      for (let i = 0; i < width * width; i++) {
-        const currentSquare = squares[i];
-        const color = currentSquare.style.backgroundColor;
-
-        // Horizontal match
-        if (i % width < width - 2 && color === squares[i + 1].style.backgroundColor && color === squares[i + 2].style.backgroundColor) {
-          currentSquare.style.backgroundColor = '';
-          squares[i + 1].style.backgroundColor = '';
-          squares[i + 2].style.backgroundColor = '';
-          score += 10;
-          handleSpecialCandies(i);
+        function loadMathQuiz() {
+            const questionElement = document.getElementById('mathQuizQuestion');
+            const question = mathQuizQuestions[currentMathQuestionIndex];
+            questionElement.textContent = question.question;
         }
 
-        // Vertical match
-        if (i < width * (width - 2) && color === squares[i + width].style.backgroundColor && color === squares[i + width * 2].style.backgroundColor) {
-          currentSquare.style.backgroundColor = '';
-          squares[i + width].style.backgroundColor = '';
-          squares[i + width * 2].style.backgroundColor = '';
-          score += 10;
-          handleSpecialCandies(i);
+        function checkMathQuizAnswer() {
+            const userAnswer = parseInt(document.getElementById('mathAnswer').value);
+            const messageElement = document.getElementById('mathQuizMessage');
+            const correctAnswer = mathQuizQuestions[currentMathQuestionIndex].answer;
+
+            if (userAnswer === correctAnswer) {
+                messageElement.textContent = 'Correct! Well done.';
+            } else {
+                messageElement.textContent = 'Oops! Incorrect answer. Try again.';
+            }
+
+            currentMathQuestionIndex++;
+            if (currentMathQuestionIndex < mathQuizQuestions.length) {
+                loadMathQuiz();
+            } else {
+                messageElement.textContent += ' Quiz Over!';
+            }
         }
-      }
-    }
 
-    // Handle special candies (striped, wrapped, color bomb)
-    function handleSpecialCandies(index) {
-      const candy = squares[index];
-      if (candy.classList.contains('striped')) {
-        clearRowOrColumn(index, 'horizontal');
-      } else if (candy.classList.contains('wrapped')) {
-        clearSurrounding(index);
-      } else if (candy.classList.contains('colorBomb')) {
-        clearAllOfSameColor(index);
-      }
-    }
+        loadMathQuiz();
 
-    // Clear a row or column (striped candy effect)
-    function clearRowOrColumn(index, direction) {
-      if (direction === 'horizontal') {
-        for (let i = 0; i < width; i++) {
-          squares[index + i].style.backgroundColor = '';
+        // Number Guessing Game
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const guess = parseInt(document.getElementById('guessInput').value);
+            const messageElement = document.getElementById('numberGuessMessage');
+            attempts++;
+
+            if (guess < randomNumber) {
+                messageElement.textContent = 'Too low! Try again.';
+            } else if (guess > randomNumber) {
+                messageElement.textContent = 'Too high! Try again.';
+            } else {
+                messageElement.textContent = `Congratulations! You guessed the right number in ${attempts} attempts.`;
+            }
         }
-      } else {
-        for (let i = 0; i < width; i++) {
-          squares[index + i * width].style.backgroundColor = '';
+
+        // Calculator Challenge Game
+        const calcQuestions = [
+            { question: "What is 5 + 3?", answer: 8 },
+            { question: "What is 9 - 4?", answer: 5 },
+            { question: "What is 7 * 2?", answer: 14 }
+        ];
+        let currentCalcQuestionIndex = 0;
+
+        function loadCalcChallenge() {
+            const questionElement = document.getElementById('calcChallengeQuestion');
+            const question = calcQuestions[currentCalcQuestionIndex];
+            questionElement.textContent = question.question;
         }
-      }
-    }
 
-    // Clear surrounding candies (wrapped candy effect)
-    function clearSurrounding(index) {
-      const adjacent = [index - 1, index + 1, index - width, index + width];
-      adjacent.forEach(i => {
-        if (i >= 0 && i < squares.length) {
-          squares[i].style.backgroundColor = '';
+        function checkCalculatorAnswer() {
+            const userAnswer = parseInt(document.getElementById('calcAnswer').value);
+            const messageElement = document.getElementById('calcChallengeMessage');
+            const correctAnswer = calcQuestions[currentCalcQuestionIndex].answer;
+
+            if (userAnswer === correctAnswer) {
+                messageElement.textContent = 'Correct! Well done.';
+            } else {
+                messageElement.textContent = 'Incorrect answer. Try again.';
+            }
+
+            currentCalcQuestionIndex++;
+            if (currentCalcQuestionIndex < calcQuestions.length) {
+                loadCalcChallenge();
+            } else {
+                messageElement.textContent += ' Calculator Challenge Over!';
+            }
         }
-      });
-    }
 
-    // Clear all candies of the same color (color bomb effect)
-    function clearAllOfSameColor(index) {
-      const color = squares[index].style.backgroundColor;
-      squares.forEach(square => {
-        if (square.style.backgroundColor === color) {
-          square.style.backgroundColor = '';
+        loadCalcChallenge();
+
+        // Time Challenge Game
+        let timeLeft = 10;
+        const timeQuestion = "What is 3 + 7?";
+        const correctTimeAnswer = 10;
+
+        function startTimeChallenge() {
+            const timerElement = document.getElementById('timeChallengeTimer');
+            const questionElement = document.getElementById('timeChallengeQuestion');
+            const messageElement = document.getElementById('timeChallengeMessage');
+
+            questionElement.textContent = timeQuestion;
+            messageElement.textContent = '';
+
+            const interval = setInterval(() => {
+                timerElement.textContent = 'Time Left: ' + timeLeft;
+                timeLeft--;
+
+                if (timeLeft < 0) {
+                    clearInterval(interval);
+                    alert('Time is up! Game Over!');
+                    messageElement.textContent = 'Time is up! Game Over!';
+                }
+            }, 1000);
+
+            const userAnswer = prompt('Answer the question: ' + timeQuestion);
+            if (parseInt(userAnswer) === correctTimeAnswer) {
+                alert('Correct! Well done!');
+            } else {
+                alert('Incorrect answer!');
+            }
         }
-      });
-    }
+    </script>
 
-    // Drop candies to fill empty spaces
-    function fillEmptySpaces() {
-      for (let i = 0; i < width * width; i++) {
-        if (squares[i].style.backgroundColor === '') {
-          let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
-          squares[i].style.backgroundColor = randomColor;
-
-          // Randomly add special candy again
-          if (Math.random() < 0.1) {
-            let specialCandy = specialCandies[Math.floor(Math.random() * specialCandies.length)];
-            squares[i].classList.add(specialCandy);
-          }
-        }
-      }
-    }
-
-    // Level up
-    function levelUp() {
-      if (score >= goal) {
-        level++;
-        levelDisplay.textContent = `Level: ${level}`;
-        score = 0;
-        scoreDisplay.textContent = `Score: ${score}`;
-        alert(`Level Up! You're now at Level ${level}`);
-        timeLeft = 60; // Reset time for
+</body>
+          </html>
