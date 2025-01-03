@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Candy Crush</title>
   <style>
+    /* Styling the page */
     body {
       font-family: Arial, sans-serif;
       display: flex;
@@ -47,9 +48,6 @@
     .yellow { background-color: #f39c12; }
     .purple { background-color: #9b59b6; }
     .orange { background-color: #e67e22; }
-    .special {
-      border: 2px solid #fff;
-    }
 
     .striped {
       background: repeating-linear-gradient(45deg, transparent, transparent 15px, #fff 15px, #fff 30px);
@@ -58,6 +56,10 @@
     .wrapped {
       background-color: #f39c12;
       border-radius: 50%;
+    }
+
+    .colorBomb {
+      background-color: #9b59b6;
     }
 
     .info {
@@ -105,7 +107,7 @@
     let level = 1;
     let timeLeft = 60;
     let timerInterval;
-    let goal = 10; // Example: Clear 10 red candies to win
+    let goal = 10; // Example goal: Clear 10 candies to win
 
     // Create the game board
     function createBoard() {
@@ -222,8 +224,4 @@
         score = 0;
         scoreDisplay.textContent = `Score: ${score}`;
         alert(`Level Up! You're now at Level ${level}`);
-        timeLeft = 60; // Reset time for new level
-      }
-    }
-
-    // Timer function
+        timeLeft = 60; // Reset time for
