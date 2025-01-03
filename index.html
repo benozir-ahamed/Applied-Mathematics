@@ -35,16 +35,21 @@
             top: 20px;
             left: 20px;
             width: 60px;
+            z-index: 10; /* Ensures the logo does not overlap the text */
         }
 
         header h1 {
             font-size: 2.5rem;
             margin-bottom: 10px;
+            position: relative; /* Ensures proper stacking of elements */
+            z-index: 1;
         }
 
         header p {
             font-size: 1.2rem;
             margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-btn {
@@ -56,6 +61,8 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background 0.3s;
+            z-index: 1;
+            position: relative;
         }
 
         .hero-btn:hover {
@@ -141,7 +148,7 @@
 </head>
 <body>
     <header>
-        <img src="images.png" alt="Rajshahi University Logo" class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/en/7/77/University_of_Rajshahi_Logo.png" alt="Rajshahi University Logo" class="logo">
         <h1>Welcome to Applied Mathematics</h1>
         <p>Your trusted resource for notes, solutions, and knowledge.</p>
         <button class="hero-btn" onclick="window.location.href='notes.html'">Explore Notes</button>
@@ -171,4 +178,4 @@
         </p>
     </footer>
 </body>
-    </html>
+            </html>
