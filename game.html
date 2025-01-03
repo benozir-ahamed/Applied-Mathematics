@@ -3,156 +3,123 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tic Tac Toe</title>
+  <title>Candy Crush</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-direction: column;
       height: 100vh;
-      background-color: #333;
-      color: white;
-      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f9;
     }
 
     .board {
       display: grid;
-      grid-template-columns: repeat(3, 100px);
-      grid-template-rows: repeat(3, 100px);
+      grid-template-columns: repeat(8, 50px);
+      grid-template-rows: repeat(8, 50px);
       gap: 5px;
+      border: 1px solid #333;
     }
 
     .cell {
-      background-color: #444;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #ddd;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
       cursor: pointer;
     }
 
-    .cell.x {
-      color: #ff5733;
+    .candy {
+      width: 40px;
+      height: 40px;
+      border-radius: 5px;
     }
 
-    .cell.o {
-      color: #3498db;
-    }
-
-    .winning-message {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .winning-message.show {
-      display: flex;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 10px;
-      background-color: #555;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+    .red { background-color: #e74c3c; }
+    .blue { background-color: #3498db; }
+    .green { background-color: #2ecc71; }
+    .yellow { background-color: #f39c12; }
+    .purple { background-color: #9b59b6; }
+    .orange { background-color: #e67e22; }
   </style>
 </head>
 <body>
-  <h1>Tic Tac Toe</h1>
-  <div class="board">
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-  </div>
-  <div class="winning-message" id="winningMessage">
-    <div data-winning-message-text></div>
-    <button id="restartButton">Restart</button>
-  </div>
+  <div class="board" id="board"></div>
+  
   <script>
-    const cells = document.querySelectorAll('[data-cell]');
-    const winningMessageTextElement = document.querySelector('[data-winning-message-text]');
-    const winningMessageElement = document.getElementById('winningMessage');
-    const restartButton = document.getElementById('restartButton');
+    const board = document.getElementById("board");
+    const width = 8;
+    const candyColors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+    let squares = [];
 
-    let isCircleTurn = false;
-    const WINNING_COMBINATIONS = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6]
-    ];
+    // Create the game board
+    function createBoard() {
+      for (let i = 0; i < width * width; i++) {
+        const square = document.createElement('div');
+        square.setAttribute('id', i);
+        square.classList.add('cell');
+        board.appendChild(square);
+        squares.push(square);
 
-    function startGame() {
-      isCircleTurn = false;
-      cells.forEach(cell => {
-        cell.classList.remove('x');
-        cell.classList.remove('o');
-        cell.removeEventListener('click', handleClick);
-        cell.addEventListener('click', handleClick, { once: true });
-      });
-      winningMessageElement.classList.remove('show');
-    }
-
-    function handleClick(e) {
-      const cell = e.target;
-      const currentClass = isCircleTurn ? 'o' : 'x';
-      placeMark(cell, currentClass);
-      if (checkWin(currentClass)) {
-        endGame(false);
-      } else if (isDraw()) {
-        endGame(true);
-      } else {
-        swapTurns();
+        // Randomly assign a color to each square
+        let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
+        square.style.backgroundColor = randomColor;
       }
     }
 
-    function placeMark(cell, currentClass) {
-      cell.classList.add(currentClass);
-    }
+    // Check for matches
+    function checkMatches() {
+      for (let i = 0; i < width * width; i++) {
+        const currentSquare = squares[i];
+        const color = currentSquare.style.backgroundColor;
 
-    function swapTurns() {
-      isCircleTurn = !isCircleTurn;
-    }
+        // Check horizontally
+        if (i % width < width - 2 && color === squares[i + 1].style.backgroundColor && color === squares[i + 2].style.backgroundColor) {
+          currentSquare.style.backgroundColor = '';
+          squares[i + 1].style.backgroundColor = '';
+          squares[i + 2].style.backgroundColor = '';
+        }
 
-    function checkWin(currentClass) {
-      return WINNING_COMBINATIONS.some(combination => {
-        return combination.every(index => {
-          return cells[index].classList.contains(currentClass);
-        });
-      });
-    }
-
-    function isDraw() {
-      return [...cells].every(cell => {
-        return cell.classList.contains('x') || cell.classList.contains('o');
-      });
-    }
-
-    function endGame(draw) {
-      if (draw) {
-        winningMessageTextElement.textContent = 'Draw!';
-      } else {
-        winningMessageTextElement.textContent = `${isCircleTurn ? "O's" : "X's"} Wins!`;
+        // Check vertically
+        if (i < width * (width - 2) && color === squares[i + width].style.backgroundColor && color === squares[i + width * 2].style.backgroundColor) {
+          currentSquare.style.backgroundColor = '';
+          squares[i + width].style.backgroundColor = '';
+          squares[i + width * 2].style.backgroundColor = '';
+        }
       }
-      winningMessageElement.classList.add('show');
     }
 
-    restartButton.addEventListener('click', startGame);
-    startGame();
+    // Drop candies to fill empty spaces
+    function fillEmptySpaces() {
+      for (let i = 0; i < width * width; i++) {
+        if (squares[i].style.backgroundColor === '') {
+          let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
+          squares[i].style.backgroundColor = randomColor;
+        }
+      }
+    }
+
+    // Event listener for clicking candies
+    board.addEventListener('click', function (e) {
+      const clickedSquare = e.target;
+      const clickedId = parseInt(clickedSquare.id);
+
+      // Logic for swapping candies when clicked
+      if (clickedSquare.classList.contains('cell')) {
+        const clickedColor = clickedSquare.style.backgroundColor;
+        setTimeout(() => {
+          // Check if any matches are formed
+          checkMatches();
+          fillEmptySpaces();
+        }, 200);
+      }
+    });
+
+    createBoard();
   </script>
 </body>
 </html>
