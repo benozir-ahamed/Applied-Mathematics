@@ -21,21 +21,46 @@
             background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white;
             position: relative;
+            overflow-x: hidden;
+        }
+
+        body.dark-mode {
+            background: #121212;
+            color: white;
         }
 
         header {
             text-align: center;
             padding: 20px;
             background: rgba(0, 0, 0, 0.7);
+            position: relative;
         }
 
         header h1 {
             font-size: 2rem;
+            animation: slideIn 2s ease;
         }
 
         header h3 {
             font-size: 1rem;
             color: #ccc;
+        }
+
+        #themeToggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background: #04AA6D;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        #themeToggle:hover {
+            transform: scale(1.1);
         }
 
         nav {
@@ -68,6 +93,10 @@
             font-weight: bold;
         }
 
+        nav.dark-mode {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         .content {
             padding: 20px;
             text-align: center;
@@ -86,50 +115,11 @@
             max-width: 800px;
         }
 
-        .qna-section {
-            margin: 40px auto;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 10px;
-            max-width: 600px;
-            text-align: left;
-        }
-
-        .qna-section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .qna-section input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .qna-section button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            background: #04AA6D;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .qna-section button:hover {
-            background: #028858;
-        }
-
-        .qna-section .response {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #ccc;
+        .clock {
+            margin: 20px 0;
+            font-size: 2rem;
+            font-weight: bold;
+            animation: fadeIn 2s ease;
         }
 
         footer {
@@ -140,76 +130,42 @@
             margin-top: 40px;
         }
 
-        footer .social-icons {
-            margin: 10px 0;
+        footer.dark-mode {
+            background: rgba(255, 255, 255, 0.1);
         }
 
-        footer .social-icons a {
-            color: white;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: color 0.3s;
+        /* Animations */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
-        footer .social-icons a:hover {
-            color: #04AA6D;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
-        /* WhatsApp Floating Button */
-        .whatsapp-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 50%;
-            padding: 15px;
-            font-size: 24px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-
-        .whatsapp-button:hover {
-            transform: scale(1.1);
-        }
-
-        .message-box {
-            display: none;
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            border-radius: 10px;
-            color: white;
-            width: 300px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .message-box input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            border: none;
-            font-size: 1rem;
-        }
-
-        .message-box button {
-            width: 100%;
-            padding: 10px;
-            background: #04AA6D;
-            color: white;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-
-        .message-box button:hover {
-            background: #028858;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+            .content {
+                padding: 10px;
+            }
+            footer {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -217,6 +173,7 @@
     <header>
         <h1>Benozir Ahamed Hridoy</h1>
         <h3>University of Rajshahi | B.Sc. in Applied Mathematics</h3>
+        <button id="themeToggle">Dark Mode</button>
     </header>
 
     <nav>
@@ -233,93 +190,32 @@
         <p>
             Applied mathematics is the use of mathematical methods and techniques to solve real-world problems in fields such as engineering, physics, economics, computer science, and more. It involves modeling, analysis, and computation to find practical solutions to complex issues.
         </p>
-    </div>
-
-    <!-- QNA Section -->
-    <div class="qna-section">
-        <h2>Q&A Section</h2>
-        <input type="text" id="question" placeholder="Type your question here...">
-        <button onclick="getAnswer()">Ask</button>
-        <div class="response" id="response"></div>
-    </div>
-
-    <!-- Floating WhatsApp Icon -->
-    <div class="whatsapp-button" onclick="openMessageBox()">💬</div>
-
-    <!-- Message Box -->
-    <div class="message-box" id="messageBox">
-        <input type="text" id="whatsappMessage" placeholder="Type your message here...">
-        <button onclick="sendMessage()">Send</button>
+        <div class="clock" id="clock"></div>
     </div>
 
     <footer>
-        <div class="social-icons">
-            <a href="https://facebook.com" aria-label="Facebook Profile" target="_blank">Facebook</a>
-            <a href="https://twitter.com" aria-label="Twitter Profile" target="_blank">Twitter</a>
-            <a href="https://linkedin.com" aria-label="LinkedIn Profile" target="_blank">LinkedIn</a>
-        </div>
-        &copy; 2025 Math Notes Pro | All Rights Reserved
+        <p>&copy; 2025 Math Notes Pro | All Rights Reserved</p>
     </footer>
 
     <script>
-        async function getAnswer() {
-            const question = document.getElementById('question').value.trim();
-            const responseDiv = document.getElementById('response');
+        // Dark Mode Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('nav').classList.toggle('dark-mode');
+            document.querySelector('footer').classList.toggle('dark-mode');
+        });
 
-            if (!question) {
-                responseDiv.textContent = "Please type a question!";
-                return;
-            }
-
-            const apiKey = "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"; // আপনার API কী যোগ করুন
-            const apiUrl = "https://api-inference.huggingface.co/models/gpt2";
-
-            const headers = {
-                "Authorization": `Bearer ${apiKey}`,
-                "Content-Type": "application/json"
-            };
-
-            const payload = {
-                "inputs": question
-            };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: "POST",
-                    headers: headers,
-                    body: JSON.stringify(payload)
-                });
-
-                const data = await response.json();
-                if (data && data.generated_text) {
-                    responseDiv.textContent = data.generated_text;
-                } else {
-                    responseDiv.textContent = "Sorry, I couldn't understand your question.";
-                }
-            } catch (error) {
-                responseDiv.textContent = "Error occurred. Please try again.";
-            }
+        // Digital Clock
+        function updateClock() {
+            const clock = document.getElementById('clock');
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            clock.textContent = `${hours}:${minutes}:${seconds}`;
         }
-
-        function openMessageBox() {
-            const messageBox = document.getElementById('messageBox');
-            if (messageBox.style.display === 'none' || messageBox.style.display === '') {
-                messageBox.style.display = 'block';
-            } else {
-                messageBox.style.display = 'none';
-            }
-        }
-
-        function sendMessage() {
-            const message = document.getElementById('whatsappMessage').value.trim();
-            if (!message) {
-                alert('Please write a message to send!');
-                return;
-            }
-            const whatsappUrl = `https://wa.me/8801767503056?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
-            document.getElementById('messageBox').style.display = 'none';
-        }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 </body>
             </html>
