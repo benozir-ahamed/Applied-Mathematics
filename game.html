@@ -32,6 +32,7 @@
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      position: relative;
     }
 
     .candy {
@@ -46,20 +47,35 @@
     .yellow { background-color: #f39c12; }
     .purple { background-color: #9b59b6; }
     .orange { background-color: #e67e22; }
+    .special {
+      border: 2px solid #fff;
+    }
+
+    .striped {
+      background: repeating-linear-gradient(45deg, transparent, transparent 15px, #fff 15px, #fff 30px);
+    }
+
+    .wrapped {
+      background-color: #f39c12;
+      border-radius: 50%;
+    }
 
     .info {
       margin-bottom: 20px;
       text-align: center;
     }
 
-    .score {
+    .score, .level, .timer {
       font-size: 24px;
     }
 
-    .level {
-      font-size: 24px;
-      margin-top: 10px;
+    .game-over {
+      display: none;
+      text-align: center;
+      font-size: 30px;
+      color: #e74c3c;
     }
+
   </style>
 </head>
 <body>
@@ -67,7 +83,10 @@
   <div class="info">
     <div class="score">Score: 0</div>
     <div class="level">Level: 1</div>
+    <div class="timer">Time: 60</div>
   </div>
+
+  <div class="game-over" id="gameOver">Game Over!</div>
 
   <div class="board" id="board"></div>
 
@@ -75,12 +94,18 @@
     const board = document.getElementById("board");
     const scoreDisplay = document.querySelector(".score");
     const levelDisplay = document.querySelector(".level");
+    const timerDisplay = document.querySelector(".timer");
+    const gameOverDisplay = document.getElementById("gameOver");
 
     const width = 8;
     const candyColors = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+    const specialCandies = ['striped', 'wrapped', 'colorBomb']; 
     let squares = [];
     let score = 0;
     let level = 1;
+    let timeLeft = 60;
+    let timerInterval;
+    let goal = 10; // Example: Clear 10 red candies to win
 
     // Create the game board
     function createBoard() {
@@ -93,31 +118,84 @@
 
         let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
         square.style.backgroundColor = randomColor;
+
+        // Randomly add special candy
+        if (Math.random() < 0.1) {
+          let specialCandy = specialCandies[Math.floor(Math.random() * specialCandies.length)];
+          square.classList.add(specialCandy);
+        }
       }
     }
 
-    // Check for matches
+    // Check for matches and handle special candies
     function checkMatches() {
       for (let i = 0; i < width * width; i++) {
         const currentSquare = squares[i];
         const color = currentSquare.style.backgroundColor;
 
-        // Check horizontally
+        // Horizontal match
         if (i % width < width - 2 && color === squares[i + 1].style.backgroundColor && color === squares[i + 2].style.backgroundColor) {
           currentSquare.style.backgroundColor = '';
           squares[i + 1].style.backgroundColor = '';
           squares[i + 2].style.backgroundColor = '';
           score += 10;
+          handleSpecialCandies(i);
         }
 
-        // Check vertically
+        // Vertical match
         if (i < width * (width - 2) && color === squares[i + width].style.backgroundColor && color === squares[i + width * 2].style.backgroundColor) {
           currentSquare.style.backgroundColor = '';
           squares[i + width].style.backgroundColor = '';
           squares[i + width * 2].style.backgroundColor = '';
           score += 10;
+          handleSpecialCandies(i);
         }
       }
+    }
+
+    // Handle special candies (striped, wrapped, color bomb)
+    function handleSpecialCandies(index) {
+      const candy = squares[index];
+      if (candy.classList.contains('striped')) {
+        clearRowOrColumn(index, 'horizontal');
+      } else if (candy.classList.contains('wrapped')) {
+        clearSurrounding(index);
+      } else if (candy.classList.contains('colorBomb')) {
+        clearAllOfSameColor(index);
+      }
+    }
+
+    // Clear a row or column (striped candy effect)
+    function clearRowOrColumn(index, direction) {
+      if (direction === 'horizontal') {
+        for (let i = 0; i < width; i++) {
+          squares[index + i].style.backgroundColor = '';
+        }
+      } else {
+        for (let i = 0; i < width; i++) {
+          squares[index + i * width].style.backgroundColor = '';
+        }
+      }
+    }
+
+    // Clear surrounding candies (wrapped candy effect)
+    function clearSurrounding(index) {
+      const adjacent = [index - 1, index + 1, index - width, index + width];
+      adjacent.forEach(i => {
+        if (i >= 0 && i < squares.length) {
+          squares[i].style.backgroundColor = '';
+        }
+      });
+    }
+
+    // Clear all candies of the same color (color bomb effect)
+    function clearAllOfSameColor(index) {
+      const color = squares[index].style.backgroundColor;
+      squares.forEach(square => {
+        if (square.style.backgroundColor === color) {
+          square.style.backgroundColor = '';
+        }
+      });
     }
 
     // Drop candies to fill empty spaces
@@ -126,53 +204,26 @@
         if (squares[i].style.backgroundColor === '') {
           let randomColor = candyColors[Math.floor(Math.random() * candyColors.length)];
           squares[i].style.backgroundColor = randomColor;
+
+          // Randomly add special candy again
+          if (Math.random() < 0.1) {
+            let specialCandy = specialCandies[Math.floor(Math.random() * specialCandies.length)];
+            squares[i].classList.add(specialCandy);
+          }
         }
       }
     }
 
     // Level up
     function levelUp() {
-      if (score >= level * 50) {
+      if (score >= goal) {
         level++;
         levelDisplay.textContent = `Level: ${level}`;
         score = 0;
         scoreDisplay.textContent = `Score: ${score}`;
         alert(`Level Up! You're now at Level ${level}`);
+        timeLeft = 60; // Reset time for new level
       }
     }
 
-    // Event listener for swapping candies
-    let firstSquare = null;
-    let secondSquare = null;
-
-    board.addEventListener('click', function (e) {
-      const clickedSquare = e.target;
-      if (!firstSquare) {
-        firstSquare = clickedSquare;
-      } else if (firstSquare === clickedSquare) {
-        firstSquare = null;
-      } else {
-        secondSquare = clickedSquare;
-        swapCandies(firstSquare, secondSquare);
-        setTimeout(() => {
-          checkMatches();
-          fillEmptySpaces();
-          levelUp();
-        }, 300);
-        firstSquare = null;
-        secondSquare = null;
-      }
-    });
-
-    // Swap candies function
-    function swapCandies(square1, square2) {
-      const tempColor = square1.style.backgroundColor;
-      square1.style.backgroundColor = square2.style.backgroundColor;
-      square2.style.backgroundColor = tempColor;
-    }
-
-    // Start the game
-    createBoard();
-  </script>
-</body>
-  </html>
+    // Timer function
