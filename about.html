@@ -12,6 +12,22 @@
       background-color: #f4f4f9;
       color: #333;
     }
+    .navbar {
+      background-color: #2c3e50;
+      padding: 10px 20px;
+    }
+    .navbar-brand {
+      color: white;
+      font-weight: bold;
+      font-size: 24px;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
     .about-section {
       text-align: center;
       padding: 50px 20px;
@@ -79,9 +95,34 @@
     .team-member a:hover {
       text-decoration: underline;
     }
+    footer {
+      background-color: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    footer p {
+      margin: 0;
+    }
   </style>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Math Notes Pro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://wa.me/8801767503056">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
 <section class="about-section">
   <h1>About Us</h1>
@@ -90,9 +131,9 @@
   <div class="team-container">
     <div class="team-member">
       <img src="https://via.placeholder.com/100" alt="Developer">
-      <h3>Rahul Dev (Developer)</h3>
+      <h3>Benozir Ahamed(Developer)</h3>
       <div class="description">
-        Passionate about creating innovative web designs and solving challenging problems.
+        Passionate about creating innovative web designs and solving challenging problems.<br>Dept: Applied mathematics.<br>Session:2023-2024
       </div>
       <a href="mailto:rahul.dev@example.com">Contact</a>
     </div>
@@ -138,8 +179,18 @@
       </div>
       <a href="mailto:priya.saha@example.com">Contact</a>
     </div>
-    <!-- Add more team members as necessary -->
+ We are looking for more contributors. If you would like to share your notes with us and take part in this project, please contact us.
+<!-- Add more team members as necessary -->
   </div>
+  <footer>
+        <p>&copy; 2025 Benozir Ahamed Hridoy | All Rights Reserved</p>
+        <p><small>
+            <a href="https://facebook.com" target="_blank">Facebook</a> |
+            <a href="https://twitter.com" target="_blank">Twitter</a> |
+            <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        </small></p>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </section>
 
 </body>
