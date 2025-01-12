@@ -15,12 +15,27 @@
             box-sizing: border-box;
             scroll-behavior: smooth;
         }
-
-        body {
+        html, body {
+            height: 100%;
+        }
+       body {
             font-family: 'Roboto', sans-serif;
             background-color: #f9f9f9;
             color: #333;
+           display: flex;
+           flex-direction: column;
+           min-height: 100vh;
         }
+        .wrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+        main {
+    flex: 1;
+    padding: 20px;
+}
 
         header {
             background: linear-gradient(to right, #6a11cb, #2575fc);
@@ -197,12 +212,13 @@
     </nav>
 <div class="content" id="home">
         <h2>What is Applied Mathematics?</h2>
-       <div class="typing-container">
+        
+</div>
+    <div class="typing-container">
         <p id="typing-text"></p>
         <span class="cursor">|</span>
-       </div> 
-</div>
-    
+    </div>
+
     <footer><small>
         <p>&copy; 2025 Benozir Ahamed Hridoy | All Rights Reserved</p>
         <p>
@@ -214,14 +230,11 @@
    </body>
     <script>
         const sentences = [
-            "Applied Mathematics is a branch of mathematics that involves using mathematical methods to solve practical problems.",
-    "It plays a critical role in fields like science, engineering, economics, computer science, and medicine.",
-    "Unlike pure mathematics, it focuses on real-world applications rather than abstract theories.",
-    "For instance, engineers use applied mathematics to design structures, optimize systems, and model physical phenomena.",
-    "Economists rely on it to analyze markets, predict trends, and optimize resource allocation.",
-    "Similarly, scientists use applied mathematics to simulate experiments, analyze data, and make accurate predictions.",
-    "Overall, it bridges the gap between theoretical mathematics and real-world problem-solving."
-];
+            "এটি প্রথম বাক্য।",
+            "এটি দ্বিতীয় বাক্য।",
+            "এটি তৃতীয় বাক্য।",
+            "এটি চতুর্থ বাক্য।"
+        ];
 
         let currentSentence = 0;
         let currentChar = 0;
