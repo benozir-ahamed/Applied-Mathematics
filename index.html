@@ -36,6 +36,12 @@
             left: 20px;
             width: 60px;
         }
+        header div {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+        }
 
         header h1 {
             font-size: 3rem;
@@ -176,11 +182,44 @@
             50% { opacity: 0; }
             100% { opacity: 1; }
             }
+            .warning {
+  display: none; /* Default hidden */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffcc00;
+  color: #000;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.warning button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.warning button:hover {
+  background-color: #333;
+            }
         }
     </style>
 </head>
 <body>
     <header>
+        <div id="mobile-warning" class="warning">
+    <p>For a better experience, switch to Desktop Mode.</p>
+    <button id="desktop-mode-btn">Switch to Desktop Mode</button>
+        </div>
         <img src="images.png" alt="Rajshahi University Logo" class="logo">
         <h1>Welcome to Applied Mathematics</h1>
         <p>Your trusted resource for notes, solutions, and knowledge.</p>
@@ -212,7 +251,7 @@
             <a href="https://linkedin.com/cyberridoy2" target="_blank">LinkedIn</a>
         </p>
     </small></footer>
-   </body>
+   
     <script>
         const sentences = ["Applied Mathematics is a branch of mathematics that involves using mathematical methods to solve practical problems.",
     "It plays a critical role in fields like science, engineering, economics, computer science, and medicine.",
@@ -247,5 +286,31 @@
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(typeSentence, typingSpeed);
         });
+      // Check if the device is mobile
+function isMobileDevice() {
+  return /Mobi|Android/i.test(navigator.userAgent);
+}
+
+// Event listener for Desktop Mode button
+function enableDesktopMode() {
+  alert("Switching to Desktop Mode...");
+  document.body.style.zoom = "100%"; // Optional for resetting zoom
+  document.body.style.width = "1024px"; // Force desktop width
+  document.body.style.overflowX = "scroll";
+}
+
+// Display warning if mobile
+document.addEventListener("DOMContentLoaded", () => {
+  if (isMobileDevice()) {
+    const warning = document.getElementById("mobile-warning");
+    warning.style.display = "block";
+
+    // Add click event listener to the button
+    const desktopModeBtn = document.getElementById("desktop-mode-btn");
+    desktopModeBtn.addEventListener("click", enableDesktopMode);
+  }
+});
+
     </script>
+</body>
 </html>
