@@ -162,6 +162,20 @@
             .content {
                 padding: 40px 15px;
             }
+            .typing-container {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+        }
+        .cursor {
+            font-weight: bold;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+            }
         }
     </style>
 </head>
@@ -182,11 +196,9 @@
         <a href="about.html">About</a>
     </nav>
 
-    <div class="content" id="home">
-        <h2>What is Applied Mathematics?</h2>
-        <p>
-            Applied Mathematics uses mathematical methods to solve practical problems in science, engineering, economics, and more. It bridges the gap between theory and application, helping professionals understand and design complex systems.
-        </p>
+    <div class="typing-container">
+        <p id="typing-text"></p>
+        <span class="cursor">|</span>
     </div>
 
     <footer><small>
@@ -197,5 +209,38 @@
             <a href="https://linkedin.com/cyberridoy2" target="_blank">LinkedIn</a>
         </p>
     </small></footer>
-</body>
+   </body>
+    <script>
+        const sentences = [
+            "এটি প্রথম বাক্য।",
+            "এটি দ্বিতীয় বাক্য।",
+            "এটি তৃতীয় বাক্য।",
+            "এটি চতুর্থ বাক্য।"
+        ];
+
+        let currentSentence = 0;
+        let currentChar = 0;
+        const typingSpeed = 100; // প্রতি অক্ষর টাইপ করার সময় (মিলিসেকেন্ডে)
+        const displayElement = document.getElementById('typing-text');
+
+        function typeSentence() {
+            if (currentChar < sentences[currentSentence].length) {
+                displayElement.textContent += sentences[currentSentence].charAt(currentChar);
+                currentChar++;
+                setTimeout(typeSentence, typingSpeed);
+            } else {
+                setTimeout(() => {
+                    currentChar = 0;
+                    currentSentence = (currentSentence + 1) % sentences.length;
+                    displayElement.textContent = '';
+                    setTimeout(typeSentence, typingSpeed);
+                }, 2000); // প্রতিটি বাক্যের পরে ২ সেকেন্ড বিরতি
+            }
+        }
+
+        // পেজ লোড হওয়ার সাথে সাথে টাইপিং শুরু
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(typeSentence, typingSpeed);
+        });
+    </script>
             </html>
