@@ -3,221 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun Math Games</title>
+    <title>MATLAB Practice</title>
     <style>
         body {
+            display: flex;
             font-family: Arial, sans-serif;
-            text-align: center;
+        }
+        #sidebar {
+            width: 250px;
+            background: #f4f4f4;
+            padding: 15px;
+        }
+        #content {
+            flex-grow: 1;
             padding: 20px;
-            background-color: #f4f7f6;
         }
-        h1 {
-            color: #4CAF50;
-        }
-        .game-container {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .game-container h2 {
-            margin-top: 0;
-            font-size: 26px;
-            color: #333;
-        }
-        .button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 10px;
+        .topic {
             cursor: pointer;
-            border: none;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
-        .input-box {
             padding: 10px;
-            font-size: 18px;
-            margin: 10px;
-            width: 200px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border-bottom: 1px solid #ddd;
         }
-        .game-message {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #555;
+        .topic:hover {
+            background: #ddd;
+        }
+        #editor {
+            width: 100%;
+            height: 300px;
+            border: 1px solid #ccc;
         }
     </style>
 </head>
 <body>
-
-    <h1>Welcome to Fun Math Games</h1>
-
-    <!-- Math Quiz Game -->
-    <div class="game-container" id="mathQuizGame">
-        <h2>Math Quiz</h2>
-        <div id="mathQuizQuestion"></div>
-        <input type="number" id="mathAnswer" class="input-box" placeholder="Your Answer" />
-        <button class="button" onclick="checkMathQuizAnswer()">Submit</button>
-        <div id="mathQuizMessage" class="game-message"></div>
+    <div id="sidebar">
+        <h3>Topics</h3>
+        <div class="topic" onclick="loadCode('plotting')">Plotting</div>
+        <div class="topic" onclick="loadCode('loops')">Loops</div>
+        <div class="topic" onclick="loadCode('functions')">Functions</div>
     </div>
-
-    <!-- Number Guessing Game -->
-    <div class="game-container" id="numberGuessGame">
-        <h2>Number Guessing Game</h2>
-        <input type="number" id="guessInput" class="input-box" placeholder="Enter your guess" />
-        <button class="button" onclick="checkGuess()">Guess</button>
-        <div id="numberGuessMessage" class="game-message"></div>
+    <div id="content">
+        <h2>MATLAB Code</h2>
+        <pre id="editor"></pre>
     </div>
-
-    <!-- Calculator Challenge Game -->
-    <div class="game-container" id="calculatorChallengeGame">
-        <h2>Calculator Challenge</h2>
-        <div id="calcChallengeQuestion"></div>
-        <input type="number" id="calcAnswer" class="input-box" placeholder="Your Answer" />
-        <button class="button" onclick="checkCalculatorAnswer()">Submit</button>
-        <div id="calcChallengeMessage" class="game-message"></div>
-    </div>
-
-    <!-- Time Challenge Game -->
-    <div class="game-container" id="timeChallengeGame">
-        <h2>Time Challenge</h2>
-        <div id="timeChallengeTimer">Time Left: 10</div>
-        <div id="timeChallengeQuestion"></div>
-        <button class="button" onclick="startTimeChallenge()">Start Challenge</button>
-        <div id="timeChallengeMessage" class="game-message"></div>
-    </div>
-
+    
     <script>
-        // Math Quiz Game
-        const mathQuizQuestions = [
-            { question: 'What is 5 + 3?', answer: 8 },
-            { question: 'What is 9 - 4?', answer: 5 },
-            { question: 'What is 7 * 2?', answer: 14 }
-        ];
-        let currentMathQuestionIndex = 0;
-
-        function loadMathQuiz() {
-            const questionElement = document.getElementById('mathQuizQuestion');
-            const question = mathQuizQuestions[currentMathQuestionIndex];
-            questionElement.textContent = question.question;
-        }
-
-        function checkMathQuizAnswer() {
-            const userAnswer = parseInt(document.getElementById('mathAnswer').value);
-            const messageElement = document.getElementById('mathQuizMessage');
-            const correctAnswer = mathQuizQuestions[currentMathQuestionIndex].answer;
-
-            if (userAnswer === correctAnswer) {
-                messageElement.textContent = 'Correct! Well done.';
-            } else {
-                messageElement.textContent = 'Oops! Incorrect answer. Try again.';
-            }
-
-            currentMathQuestionIndex++;
-            if (currentMathQuestionIndex < mathQuizQuestions.length) {
-                loadMathQuiz();
-            } else {
-                messageElement.textContent += ' Quiz Over!';
-            }
-        }
-
-        loadMathQuiz();
-
-        // Number Guessing Game
-        const randomNumber = Math.floor(Math.random() * 100) + 1;
-        let attempts = 0;
-
-        function checkGuess() {
-            const guess = parseInt(document.getElementById('guessInput').value);
-            const messageElement = document.getElementById('numberGuessMessage');
-            attempts++;
-
-            if (guess < randomNumber) {
-                messageElement.textContent = 'Too low! Try again.';
-            } else if (guess > randomNumber) {
-                messageElement.textContent = 'Too high! Try again.';
-            } else {
-                messageElement.textContent = `Congratulations! You guessed the right number in ${attempts} attempts.`;
-            }
-        }
-
-        // Calculator Challenge Game
-        const calcQuestions = [
-            { question: "What is 5 + 3?", answer: 8 },
-            { question: "What is 9 - 4?", answer: 5 },
-            { question: "What is 7 * 2?", answer: 14 }
-        ];
-        let currentCalcQuestionIndex = 0;
-
-        function loadCalcChallenge() {
-            const questionElement = document.getElementById('calcChallengeQuestion');
-            const question = calcQuestions[currentCalcQuestionIndex];
-            questionElement.textContent = question.question;
-        }
-
-        function checkCalculatorAnswer() {
-            const userAnswer = parseInt(document.getElementById('calcAnswer').value);
-            const messageElement = document.getElementById('calcChallengeMessage');
-            const correctAnswer = calcQuestions[currentCalcQuestionIndex].answer;
-
-            if (userAnswer === correctAnswer) {
-                messageElement.textContent = 'Correct! Well done.';
-            } else {
-                messageElement.textContent = 'Incorrect answer. Try again.';
-            }
-
-            currentCalcQuestionIndex++;
-            if (currentCalcQuestionIndex < calcQuestions.length) {
-                loadCalcChallenge();
-            } else {
-                messageElement.textContent += ' Calculator Challenge Over!';
-            }
-        }
-
-        loadCalcChallenge();
-
-        // Time Challenge Game
-        let timeLeft = 10;
-        const timeQuestion = "What is 3 + 7?";
-        const correctTimeAnswer = 10;
-
-        function startTimeChallenge() {
-            const timerElement = document.getElementById('timeChallengeTimer');
-            const questionElement = document.getElementById('timeChallengeQuestion');
-            const messageElement = document.getElementById('timeChallengeMessage');
-
-            questionElement.textContent = timeQuestion;
-            messageElement.textContent = '';
-
-            const interval = setInterval(() => {
-                timerElement.textContent = 'Time Left: ' + timeLeft;
-                timeLeft--;
-
-                if (timeLeft < 0) {
-                    clearInterval(interval);
-                    alert('Time is up! Game Over!');
-                    messageElement.textContent = 'Time is up! Game Over!';
-                }
-            }, 1000);
-
-            const userAnswer = prompt('Answer the question: ' + timeQuestion);
-            if (parseInt(userAnswer) === correctTimeAnswer) {
-                alert('Correct! Well done!');
-            } else {
-                alert('Incorrect answer!');
-            }
+        const codes = {
+            plotting: `% MATLAB Plotting Example
+x = linspace(0,10,100);
+y = sin(x);
+plot(x, y);
+title('Sine Wave');
+xlabel('Time');
+ylabel('Amplitude');`,
+            loops: `% MATLAB Loops Example
+for i = 1:10
+    disp(['Iteration: ', num2str(i)]);
+end`,
+            functions: `% MATLAB Function Example
+function y = squareNum(x)
+y = x^2;
+end`
+        };
+        
+        function loadCode(topic) {
+            document.getElementById('editor').textContent = codes[topic] || 'No code available';
         }
     </script>
-
 </body>
-          </html>
+</html>
