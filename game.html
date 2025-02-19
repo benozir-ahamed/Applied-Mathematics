@@ -75,50 +75,34 @@
     <script>
         const codes = {
             plotting: `clc; clear; close all;
-
-
 B = [2 0 0; 0 2 0; 0 0 2];
 inv(B)
-
 % Augmented Matrix 
 I = eye(3);
 Aug = [B I];
-
 disp('Step 1: Augmented Matrix [B | I]');
 disp(Aug);
-
-% R1 -> R1 / 4 (Making pivot 1 in first row)
 disp('Step 2: Making first pivot 1');
 Aug(1,:) = Aug(1,:) / Aug(1,1);
 disp(Aug);
-
-% Making first column zeros below pivot
 disp('Step 3: Making first column zeros below pivot');
 Aug(2,:) = Aug(2,:) - Aug(2,1) * Aug(1,:);
 Aug(3,:) = Aug(3,:) - Aug(3,1) * Aug(1,:);
 disp(Aug);
-
-% Making second pivot 1
 disp('Step 4: Making second pivot 1');
 Aug(2,:) = Aug(2,:) / Aug(2,2);
 disp(Aug);
-% Making second column zeros below pivot
 disp('Step 5: Making second column zeros below pivot');
 Aug(3,:) = Aug(3,:) - Aug(3,2) * Aug(2,:);
 disp(Aug);
-
-% Making third pivot 1
 disp('Step 6: Making third pivot 1');
 Aug(3,:) = Aug(3,:) / Aug(3,3);
 disp(Aug);
-
-% Back substitution to make upper triangular part 0
 disp('Step 7: Making upper triangular part 0');
 Aug(2,:) = Aug(2,:) - Aug(2,3) * Aug(3,:);
 Aug(1,:) = Aug(1,:) - Aug(1,3) * Aug(3,:);
 Aug(1,:) = Aug(1,:) - Aug(1,2) * Aug(2,:);
 disp(Aug);
-
 inv_B = Aug(:,4:6);
 disp('Inverse of B:');
 disp(inv_B);`,
