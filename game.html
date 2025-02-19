@@ -61,17 +61,10 @@
 <body>
     <div id="sidebar">
         <h3>Topics</h3>
-          <div class="topic" onclick="loadCode('functions')">🔣 Functions</div>
         <div class="topic" onclick="loadCode('plotting')">📊 Plotting</div>
         <div class="topic" onclick="loadCode('loops')">🔁 Loops</div>
-        <div class="topic" onclick="loadCode('M')">Matrix Determinant</div>
-          <div class="topic" onclick="loadCode('Matrix Rank')">Matrix Rank</div>
-        <div class="topic" onclick="loadCode('Matrix Inverse')">Matrix Inverse</div>
-        <div class="topic" onclick="loadCode('Matrix Linear Equation')">Matrix Linear Equation</div>
-          <div class="topic" onclick="loadCode('Eigen values & vectors')">Eigen values & vectors</div>
-       
-      
-  
+        <div class="topic" onclick="loadCode('functions')">🔣 Functions</div>
+    </div>
     <div id="content">
         <h2>MATLAB Code</h2>
         <pre id="editor">Select a topic to view code.</pre>
@@ -79,38 +72,7 @@
     
     <script>
         const codes = {
-            m: `Determinant Simply
-clc;
-clear;
-
-% Given matrix
-A = [-9 2 6; 5 0 -3; -16 4 11]
-det(A)
-% Store the scaling factor for determinant correction
-scale_factor = 1;
-
-% Making first column below pivot zero
-factor1 = A(2,1)/A(1,1);
-A(2,:) = A(2,:) - factor1 * A(1,:);
-
-factor2 = A(3,1)/A(1,1);
-A(3,:) = A(3,:) - factor2 * A(1,:);
-
-
-% Making second column below pivot zero
-factor3 = A(3,2)/A(2,2);
-A(3,:) = A(3,:) - factor3 * A(2,:);
-
-% Calculate determinant
-% The determinant is the product of the diagonal elements
-det_A = prod(diag(A)) * scale_factor;
-
-% Display results
-disp('Matrix after making first column zero below pivot:');
-disp(A);
-disp('Determinant of A:');
-disp(det_A);
-<h1>Determinant using loop</h1>
+            plotting: `% MATLAB Plotting Example
 clc;
 clear;
 
@@ -161,9 +123,8 @@ disp('Transformed Matrix A:');
 disp(A);
 disp('Determinant using manual calculation:');
 disp(detter);
-
 ,
-          loops: `% MATLAB Loops Example
+            loops: `% MATLAB Loops Example
 for i = 1:10
     disp(['Iteration: ', num2str(i)]);
 end`,
@@ -179,3 +140,4 @@ end`
     </script>
 </body>
 </html>
+
