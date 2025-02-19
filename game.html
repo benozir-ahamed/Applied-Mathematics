@@ -61,7 +61,7 @@
 <body>
     <div id="sidebar">
         <h3>Topics</h3>
-        <div class="topic" onclick="loadCode('plotting')">📊 Plotting</div>
+        <div class="topic" onclick="loadCode('plotting')">📊Inverse</div>
         <div class="topic" onclick="loadCode('loops')">🔁 Loops</div>
         <div class="topic" onclick="loadCode('functions')">🔣 Functions</div>
         <div class="topic" onclick="loadCode('determinant')">🟢 Determinant Calculation</div>
@@ -74,13 +74,34 @@
     
     <script>
         const codes = {
-            plotting: `% MATLAB Plotting Example
-x = linspace(0,10,100);
-y = sin(x);
-plot(x, y);
-title('Sine Wave');
-xlabel('Time');
-ylabel('Amplitude');`,
+            plotting: `clc; clear; close all;
+
+
+B = [2 0 0; 0 2 0; 0 0 2];
+inv(B)
+
+% Augmented Matrix 
+I = eye(3);
+Aug = [B I];
+
+disp('Step 1: Augmented Matrix [B | I]');
+disp(Aug);
+
+% R1 -> R1 / 4 (Making pivot 1 in first row)
+disp('Step 2: Making first pivot 1');
+Aug(1,:) = Aug(1,:) / Aug(1,1);
+disp(Aug);
+
+% Making first column zeros below pivot
+disp('Step 3: Making first column zeros below pivot');
+Aug(2,:) = Aug(2,:) - Aug(2,1) * Aug(1,:);
+Aug(3,:) = Aug(3,:) - Aug(3,1) * Aug(1,:);
+disp(Aug);
+
+% Making second pivot 1
+disp('Step 4: Making second pivot 1');
+Aug(2,:) = Aug(2,:) / Aug(2,2);
+disp(Aug);`,
             loops: `% MATLAB Loops Example
 for i = 1:10
     disp(['Iteration: ', num2str(i)]);
