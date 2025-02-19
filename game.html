@@ -64,6 +64,7 @@
         <div class="topic" onclick="loadCode('plotting')">📊 Plotting</div>
         <div class="topic" onclick="loadCode('loops')">🔁 Loops</div>
         <div class="topic" onclick="loadCode('functions')">🔣 Functions</div>
+        <div class="topic" onclick="loadCode('determinant')">🟢 Determinant Calculation</div>
     </div>
     <div id="content">
         <h2>MATLAB Code</h2>
@@ -73,7 +74,21 @@
     <script>
         const codes = {
             plotting: `% MATLAB Plotting Example
-clc;clear;
+x = linspace(0,10,100);
+y = sin(x);
+plot(x, y);
+title('Sine Wave');
+xlabel('Time');
+ylabel('Amplitude');`,
+            loops: `% MATLAB Loops Example
+for i = 1:10
+    disp(['Iteration: ', num2str(i)]);
+end`,
+            functions: `% MATLAB Function Example
+function y = squareNum(x)
+y = x^2;
+end`,
+            determinant: `clc;clear;
 % Given matrix
 A = [-9 2 6; 5 0 -3; -16 4 11]
 det(A)
@@ -87,7 +102,6 @@ A(2,:) = A(2,:) - factor1 * A(1,:);
 factor2 = A(3,1)/A(1,1);
 A(3,:) = A(3,:) - factor2 * A(1,:);
 
-
 % Making second column below pivot zero
 factor3 = A(3,2)/A(2,2);
 A(3,:) = A(3,:) - factor3 * A(2,:);
@@ -100,15 +114,7 @@ det_A = prod(diag(A)) * scale_factor;
 disp('Matrix after making first column zero below pivot:');
 disp(A);
 disp('Determinant of A:');
-disp(det_A);,
-            loops: `% MATLAB Loops Example
-for i = 1:10
-    disp(['Iteration: ', num2str(i)]);
-end`,
-            functions: `% MATLAB Function Example
-function y = squareNum(x)
-y = x^2;
-end`
+disp(det_A);`
         };
         
         function loadCode(topic) {
@@ -117,4 +123,5 @@ end`
     </script>
 </body>
 </html>
+
 
