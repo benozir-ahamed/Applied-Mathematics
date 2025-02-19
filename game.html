@@ -73,8 +73,12 @@
     <script>
         const codes = {
             plotting: `% MATLAB Plotting Example
-fgd
-,
+x = linspace(0,10,100);
+y = sin(x);
+plot(x, y);
+title('Sine Wave');
+xlabel('Time');
+ylabel('Amplitude');`,
             loops: `% MATLAB Loops Example
 for i = 1:10
     disp(['Iteration: ', num2str(i)]);
