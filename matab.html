@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATLAB Practice</title>
+    <style>
+        body {
+            display: flex;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background: #f8f9fa;
+            color: #333;
+        }
+        #sidebar {
+            width: 300px;
+            background: #343a40;
+            padding: 20px;
+            color: white;
+            height: 100vh;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+        #sidebar h3 {
+            text-align: center;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 10px;
+        }
+        .topic, .sub-topic {
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin: 5px 0;
+            background: #495057;
+            transition: 0.3s;
+        }
+        .topic:hover, .sub-topic:hover {
+            background: #ffc107;
+            color: #343a40;
+        }
+        #content {
+            flex-grow: 1;
+            padding: 40px;
+            text-align: center;
+        }
+        h2 {
+            color: #343a40;
+            border-bottom: 3px solid #ffc107;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h3>Topics</h3>
+        <div class="topic" onclick="toggleSubTopics('fundamentals')">📊 Fundamentals of Mathematics</div>
+        <div id="fundamentals" style="display:none;">
+            <div class="sub-topic" onclick="showImage('fundamentals1.png')">Numbers & Sets</div>
+            <div class="sub-topic" onclick="showImage('fundamentals2.png')">Functions & Graphs</div>
+        </div>
+
+        <div class="topic" onclick="toggleSubTopics('algebra')">🔁 Algebra & Trigonometry</div>
+        <div id="algebra" style="display:none;">
+            <div class="sub-topic" onclick="showImage('algebra1.png')">Equations & Inequalities</div>
+            <div class="sub-topic" onclick="showImage('algebra2.png')">Trigonometric Functions</div>
+        </div>
+
+        <div class="topic" onclick="toggleSubTopics('calculus')">🔣 Differential Calculus</div>
+        <div id="calculus" style="display:none;">
+            <div class="sub-topic" onclick="showImage('calculus1.png')">Limits & Continuity</div>
+            <div class="sub-topic" onclick="showImage('calculus2.png')">Derivatives & Applications</div>
+        </div>
+
+        <div class="topic" onclick="toggleSubTopics('matrix')">🔄 Matrix Theory</div>
+        <div id="matrix" style="display:none;">
+            <div class="sub-topic" onclick="showImage('matrix1.png')">Matrix Operations</div>
+            <div class="sub-topic" onclick="showImage('matrix2.png')">Eigenvalues & Eigenvectors</div>
+        </div>
+    </div>
+    <div id="content">
+        <h2>Image Display</h2>
+        <img id="displayImage" src="" alt="Select a sub-topic to view the image">
+    </div>
+    
+    <script>
+        function toggleSubTopics(topicId) {
+            const subTopicDiv = document.getElementById(topicId);
+            subTopicDiv.style.display = subTopicDiv.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function showImage(imageName) {
+            const img = document.getElementById('displayImage');
+            img.src = imageName;
+            img.alt = 'Image for ' + imageName;
+        }
+    </script>
+</body>
+</html>
