@@ -93,6 +93,7 @@
     </div>
     <div id="content">
         <h2>Select a topic to view the MATLAB code</h2>
+        <img id="displayImage" src="" alt="image">
     </div>
     
     <script>
@@ -101,7 +102,7 @@
             subTopicDiv.style.display = subTopicDiv.style.display === 'none' ? 'block' : 'none';
         }
 
-         function showImage(imageName) {
+        function showImage(imageName) {
             const img = document.getElementById('displayImage');
             img.src = 'https://raw.githubusercontent.com/benozir-ahamed/MATLAB-Projects/matlab/' + imageName;
             img.alt = 'Image for ' + imageName;
